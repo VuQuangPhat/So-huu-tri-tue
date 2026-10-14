@@ -172,7 +172,21 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 
 .warn,.note{border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.5}
 .warn{background:var(--bad-soft);color:var(--bad)} .note{background:var(--warn-soft);color:var(--warn)}
-.amendnotice{max-width:1180px;margin:0 auto 18px;padding:12px 16px;border-radius:12px;background:var(--warn-soft);color:var(--warn);font-size:13.5px;line-height:1.6}
+.amendnotice{max-width:1180px;margin:0 auto 18px;padding:14px 18px 16px;border-radius:14px;background:var(--warn-soft);color:var(--warn)}
+.amendnotice-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px}
+.amendnotice-title{display:inline-flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0}
+.amendnotice-head b{font-family:var(--f-display);font-size:14.5px;letter-spacing:-.01em;color:inherit}
+.amendnotice-badge{flex:none;white-space:nowrap;font:600 11px var(--f-mono);background:color-mix(in srgb, var(--warn) 16%, transparent);border-radius:999px;padding:2px 10px}
+.amendnotice-lede{font-size:13px;line-height:1.55;margin:0 0 10px;opacity:.92;max-width:84ch}
+.amendnotice-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:10px}
+.amendnotice-table tr{border-bottom:1px solid color-mix(in srgb, var(--warn) 18%, transparent)}
+.amendnotice-table tr:last-child{border-bottom:0}
+.amendnotice-table tr.grp td{font-weight:700;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:9px 0 5px;opacity:.85}
+.amendnotice-table tr.grp:first-child td{padding-top:0}
+.amendnotice-table td{padding:5px 10px 5px 0;vertical-align:top;line-height:1.5}
+.amendnotice-table td.k{font-weight:600;white-space:nowrap;width:1%}
+.amendnotice-foot{font-size:12px;line-height:1.5;opacity:.85;border-top:1px solid color-mix(in srgb, var(--warn) 25%, transparent);padding-top:8px}
+@media (max-width:600px){.amendnotice-table,.amendnotice-table tbody,.amendnotice-table tr,.amendnotice-table td{display:block;width:auto!important}.amendnotice-table td{padding:2px 0}.amendnotice-table td.k{padding-top:6px}}
 
 /* ---- tabs (Trang chủ / Lý thuyết / Hồ sơ) ---- */
 .tabs button{font-weight:500}
@@ -192,6 +206,20 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .ai-table td.no{color:var(--bad)}
 .ai-table td.yes{color:var(--ok)}
 @media (max-width:700px){.ai-table,.ai-table tbody,.ai-table tr,.ai-table td{display:block;width:auto!important;max-width:none}.ai-table thead{display:none}.ai-table tr{border-bottom:1px solid var(--line);padding:10px 0}.ai-table tr.grp{padding:6px 10px}.ai-table td{border-bottom:0;padding:3px 10px}.ai-table td.k{white-space:normal;font-weight:700}.ai-table td.cspl{color:var(--accent);font-size:11px}.ai-table td.cspl::before{content:"CSPL: "}}
+
+/* ---- trang Tóm tắt ---- */
+.sum-wrap{display:grid;gap:10px;margin-top:4px}
+.sum-acc{border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden}
+.sum-acc summary{list-style:none;cursor:pointer;padding:13px 18px}
+.sum-acc summary::-webkit-details-marker{display:none}
+.sum-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sum-row .sum-arrow{flex:none;color:var(--muted);font-size:12px;transition:transform .15s}
+.sum-acc[open] .sum-row .sum-arrow{transform:rotate(90deg)}
+.sum-row .sum-title{flex:1;font-family:var(--f-display);font-weight:700;font-size:14.5px;letter-spacing:-.01em}
+.sum-acc summary:hover .sum-title{color:var(--accent)}
+.sum-count{flex:none;font:600 11px var(--f-mono);color:var(--muted);background:var(--surface-2);border-radius:999px;padding:2px 9px}
+.sum-acc .ai-table{padding:0 18px 16px}
+.sum-acc .ai-table thead{display:table-header-group}
 
 /* ---- trang Thời hạn · Thời hiệu ---- */
 .dur-card{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:var(--surface);box-shadow:var(--shadow)}
@@ -359,6 +387,7 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
     <nav class="seg tabs" id="pageTabs" role="tablist" aria-label="Chuyên mục">
       <button id="tabHome" role="tab" aria-pressed="true">🗺️ Trang chủ</button>
       <button id="tabTheory" role="tab" aria-pressed="false">📘 Lý thuyết</button>
+      <button id="tabSummary" role="tab" aria-pressed="false">📋 Tóm tắt</button>
       <button id="tabFiling" role="tab" aria-pressed="false">📝 Hồ sơ · Thủ tục</button>
       <button id="tabDuration" role="tab" aria-pressed="false">⏳ Thời hạn · Thời hiệu</button>
       <button id="tabCases" role="tab" aria-pressed="false">⚖️ Tranh chấp thực tế</button>
@@ -372,7 +401,7 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
     <h1 id="heroTitle">Bạn đang tra cứu đối tượng nào?</h1>
     <p id="heroSub">Chọn một nhóm quyền để xem nội dung nghiên cứu và hồ sơ/thủ tục đăng ký. Đã biết điều luật hoặc từ khóa thì gõ thẳng vào ô tìm.</p>
     </div>
-    <div class="me"><img src="data:image/jpeg;base64,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" alt="Vũ Quang Phát"><div><b>Vũ Quang Phát</b><button id="cpEmail" title="Sao chép email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>phat.aqualegal@gmail.com</button></div></div>
+    <div class="me"><img src="data:image/jpeg;base64,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" alt="Vũ Quang Phát"><div><small>PHÁP LÝ &amp; PHÁT TRIỂN DỰ ÁN BĐS</small><b>Vũ Quang Phát</b><button id="cpEmail" title="Sao chép email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>phat.aqualegal@gmail.com</button></div></div>
     </div>
     <div class="search" role="search">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -384,8 +413,6 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
     <div class="quick" id="quick"></div>
   </section>
 
-  <div class="amendnotice" role="note">⚡ <b>Cập nhật Luật số 131/2025/QH15</b> (thông qua 10/12/2025, <b>hiệu lực từ 01/4/2026</b>) sửa đổi, bổ sung hơn 70 điều của LSHTT: rút ngắn thời hạn thẩm định SHCN (công bố đơn 2→1 tháng; thẩm định nội dung sáng chế 18→12 tháng, nhãn hiệu 9→5 tháng, KDCN 7→5 tháng), bổ sung cơ chế thẩm định nhanh, tăng mức bồi thường thiệt hại ấn định (500 triệu→1 tỷ đồng), bổ sung Đ.7 (giới hạn quyền), Đ.112a (phản đối KDCN), và các quy định mới về AI. Các mục liên quan trong trang này đã được cập nhật và đánh dấu; một số số liệu còn gắn cờ <b>⚑</b> cần đối chiếu bản hợp nhất chính thức trước khi dùng trong văn bản.</div>
-
   <div id="journey">
     <div class="sect-label" id="journeyLabel">Quy trình đăng ký</div>
     <div class="track" id="track"></div>
@@ -394,7 +421,7 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
   <main id="view" aria-live="polite"></main>
 
   <footer class="foot">
-    <span class="sig">Website được xây dựng và biên soạn bởi <b>Vũ Quang Phát</b> · AQUA LEGAL · Cập nhật LSHTT 2005 sđ 2009,2019,2022,2025 (Luật số 07/2022/QH15, 131/2025/QH15 — hiệu lực 01/4/2026) &amp; NĐ 17/2023, 65/2023, 79/2023, 341/2025, 134/2026/NĐ-CP · © 2026</span>
+    <span class="sig">Website được xây dựng và biên soạn bởi <b>Vũ Quang Phát</b> · © 2026</span>
     <span class="note">Tóm tắt chỉ để định hướng. Đối chiếu văn bản gốc trước khi áp dụng.</span>
   </footer>
 </div>
@@ -408,15 +435,16 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 /* 3 nhóm lớn theo K1 Đ.4 LSHTT, cộng 1 nhóm cross-cutting (bảo vệ quyền) */
 const BIGGROUPS=[
  {id:"tg",label:"Quyền tác giả & quyền liên quan",desc:"Tác phẩm, cuộc biểu diễn, bản ghi, phát sóng"},
- {id:"cn",label:"Quyền sở hữu công nghiệp",desc:"Sáng chế, KDCN, nhãn hiệu, CDĐL, tên TM, bí mật KD"},
+ {id:"cn",label:"Quyền sở hữu công nghiệp",desc:"Sáng chế, KDCN, thiết kế bố trí, nhãn hiệu, CDĐL, tên TM, bí mật KD"},
  {id:"gt",label:"Quyền đối với giống cây trồng",desc:"Chọn tạo, phát hiện và phát triển giống mới"},
  {id:"bv",label:"Bảo vệ quyền SHTT",desc:"Xử lý xâm phạm, chuyển giao quyền, điều ước quốc tế — áp dụng chung"}
 ];
 const GROUPS=[
  {id:"qtg",big:"tg",label:"Quyền tác giả",desc:"Tác phẩm văn học, nghệ thuật, khoa học"},
  {id:"qlq",big:"tg",label:"Quyền liên quan",desc:"Người biểu diễn · bản ghi · phát sóng"},
- {id:"sc",big:"cn",label:"Sáng chế / GPHI",desc:"Giải pháp kỹ thuật"},
+ {id:"sc",big:"cn",label:"Sáng chế độc quyền / sáng chế giải pháp hữu ích",desc:"Giải pháp kỹ thuật"},
  {id:"kdcn",big:"cn",label:"Kiểu dáng công nghiệp",desc:"Hình dáng bên ngoài sản phẩm"},
+ {id:"tkbt",big:"cn",label:"Thiết kế bố trí mạch tích hợp",desc:"Cấu trúc không gian mạch tích hợp bán dẫn"},
  {id:"nh",big:"cn",label:"Nhãn hiệu",desc:"Dấu hiệu phân biệt hàng hóa, dịch vụ"},
  {id:"cdd",big:"cn",label:"Chỉ dẫn địa lý",desc:"Nguồn gốc địa lý sản phẩm"},
  {id:"ttm",big:"cn",label:"Tên TM & Bí mật KD",desc:"Xác lập qua sử dụng/tự bảo mật"},
@@ -433,6 +461,86 @@ const STAGES=[
  {id:"capvb",label:"Cấp văn bằng bảo hộ",desc:"GCN / Bằng độc quyền"},
  {id:"sauvb",label:"Sau cấp văn bằng",desc:"Gia hạn, chấm dứt, hủy bỏ"},
  {id:"tuxaclap",label:"Tự xác lập (không đăng ký)",desc:"Tên thương mại, bí mật kinh doanh",extra:true}
+];
+
+/* Tóm tắt dạng bảng (Nội dung | Điều luật | Tóm tắt) — biên soạn theo tài liệu tổng hợp điều luật của người dùng,
+   đối chiếu với VBHN-SHTT. Dùng cho tab "Tóm tắt" — tra cứu nhanh song song với Lý thuyết (giải thích chi tiết hơn). */
+const SUMMARY=[
+ {title:"I. Quyền tác giả (QTG)",rows:[
+  {k:"Đối tượng bảo hộ QTG",law:"Đ.3.1, Đ.14 LSHTT",v:"13 loại hình tác phẩm: văn học/KH/sách giáo khoa; bài giảng/phát biểu; báo chí; âm nhạc; sân khấu; điện ảnh; mỹ thuật/MTƯD; nhiếp ảnh; kiến trúc; bản họa đồ/sơ đồ/bản đồ; văn học-nghệ thuật dân gian; chương trình máy tính/sưu tập dữ liệu. Tác phẩm phái sinh được bảo hộ nếu không gây phương hại QTG tác phẩm gốc (K2 Đ.14). Điều kiện: do tác giả trực tiếp sáng tạo bằng lao động trí tuệ, không sao chép (K3 Đ.14)."},
+  {k:"Điều kiện bảo hộ",law:"Đ.6.1, Đ.13 LSHTT",v:"QTG phát sinh kể từ khi tác phẩm được sáng tạo và thể hiện dưới hình thức vật chất nhất định — không phân biệt nội dung, chất lượng, hình thức, ngôn ngữ, đã/chưa công bố, đã/chưa đăng ký. Chủ thể: TC/CN Việt Nam; TC/CN nước ngoài có tác phẩm công bố lần đầu tại VN hoặc trong 30 ngày kể từ công bố ở nước khác; hoặc theo điều ước quốc tế. Đăng ký KHÔNG phải thủ tục bắt buộc (K2 Đ.49)."},
+  {k:"Không được bảo hộ",law:"Đ.15 LSHTT",v:"(1) Tin tức thời sự thuần túy đưa tin. (2) Văn bản quy phạm pháp luật, văn bản hành chính, văn bản tư pháp và bản dịch chính thức. (3) Quy trình, hệ thống, phương pháp hoạt động, khái niệm, nguyên lý, số liệu."},
+  {k:"Thời hạn bảo hộ",law:"Đ.27 LSHTT",v:"Quyền nhân thân (K1,2,4 Đ.19): bảo hộ VÔ THỜI HẠN. Quyền nhân thân K3 Đ.19 + quyền tài sản (Đ.20) — tác phẩm điện ảnh/nhiếp ảnh/MTƯD/khuyết danh: 75 năm từ công bố lần đầu (100 năm từ định hình nếu chưa công bố trong 25 năm); loại hình khác: suốt đời tác giả + 50 năm; đồng tác giả: 50 năm sau năm đồng tác giả cuối cùng mất. Kết thúc 24h ngày 31/12 của năm chấm dứt."},
+  {k:"Chủ sở hữu QTG",law:"Đ.36–42 LSHTT",v:"Đ.37: tác giả tự sáng tạo = chủ sở hữu. Đ.38: đồng tác giả = đồng chủ sở hữu. Đ.39: TC/CN giao nhiệm vụ/ký HĐ với tác giả = CSH quyền tài sản + quyền công bố (trừ thỏa thuận khác). Đ.40: người thừa kế hợp pháp = CSH. Đ.41: người được chuyển giao quyền theo HĐ = CSH trong phạm vi chuyển giao. Đ.42: Nhà nước là đại diện CSH khi tác phẩm do NN đầu tư sáng tạo, CSH chuyển giao cho NN, hoặc CSH chết không người thừa kế/từ chối thừa kế."},
+  {k:"Ngoại lệ QTG (miễn phép, miễn phí)",law:"Đ.25, Đ.25a LSHTT",v:"Tự sao 1 bản nghiên cứu/học tập cá nhân phi TM; sao hợp lý 1 phần nghiên cứu/học tập; minh họa giảng dạy; dùng trong hoạt động công vụ NN; trích dẫn hợp lý bình luận/viết báo/phát sóng; thư viện phi TM lưu trữ/sao hợp lý/liên thông; biểu diễn trong sinh hoạt văn hóa phi TM; chụp ảnh/truyền hình tác phẩm trưng bày nơi công cộng để giới thiệu, phi TM; nhập khẩu bản sao dùng cá nhân; đăng lại bài giảng/tin thời sự. Đ.25a: ngoại lệ cho người khuyết tật. Phải ghi tên tác giả, nguồn gốc. Không áp dụng với tác phẩm kiến trúc, MTƯD, phần mềm máy tính."},
+  {k:"Giới hạn QTG (miễn phép, phải trả BQ)",law:"Đ.26 LSHTT",v:"(a) Tổ chức phát sóng dùng tác phẩm đã công bố để phát sóng — phải trả tiền BQ cho CSH QTG. (b) TC/CN dùng bản ghi âm-ghi hình đã công bố TM trong kinh doanh — trả tiền BQ theo thỏa thuận. Không áp dụng với tác phẩm điện ảnh (K3). Ưu đãi nước đang phát triển: quyền dịch/sao chép phục vụ giảng dạy, nghiên cứu phi TM theo điều ước quốc tế (K4)."},
+  {k:"Chuyển giao QTG",law:"Đ.45–48 LSHTT",v:"A. Chuyển NHƯỢNG (Đ.45,46) = chuyển giao sở hữu: đối tượng là quyền công bố (K3 Đ.19) + toàn bộ quyền tài sản (Đ.20); không chuyển nhượng quyền nhân thân K1,2,4 Đ.19; đồng CSH phải thỏa thuận của tất cả. B. Chuyển quyền SỬ DỤNG (Đ.47,48) = cho phép dùng có thời hạn: không chuyển quyền sử dụng với quyền nhân thân K2,4 Đ.19; bên nhận có thể chuyển tiếp nếu CSH đồng ý. Hợp đồng phải bằng văn bản."}
+ ]},
+ {title:"II. Tác phẩm phái sinh",rows:[
+  {k:"Khái niệm",law:"K8 Đ.4 LSHTT",v:"Tác phẩm sáng tạo trên cơ sở 1 hoặc nhiều tác phẩm đã có thông qua: dịch thuật, phóng tác, biên soạn, chú giải, tuyển chọn, cải biên, chuyển thể nhạc và các chuyển thể khác."},
+  {k:"Điều kiện được bảo hộ",law:"K2,3 Đ.14 LSHTT",v:"Không gây phương hại QTG đối với tác phẩm gốc; tác giả phải trực tiếp sáng tạo bằng lao động trí tuệ, không sao chép."},
+  {k:"Quyền làm tác phẩm phái sinh",law:"Đ.20.1a,2 LSHTT",v:"Là quyền tài sản độc quyền của CSH QTG tác phẩm gốc. TC/CN muốn làm tác phẩm phái sinh phải được CSH cho phép và trả tiền bản quyền. Nếu ảnh hưởng quyền nhân thân K4 Đ.19 (bảo vệ toàn vẹn tác phẩm) thì còn phải có sự đồng ý bằng văn bản của tác giả."},
+  {k:"CSH, thời hạn, chuyển giao",law:"Đ.37–42,27,45–48 (áp dụng tương tự)",v:"Áp dụng các quy tắc chung như tác phẩm gốc để xác định chủ sở hữu, thời hạn bảo hộ (có thể có thời hạn riêng, không phụ thuộc tác phẩm gốc) và chuyển giao quyền. Khai thác tác phẩm phái sinh vẫn phải đảm bảo không xâm phạm QTG của tác phẩm gốc (K2 Đ.14)."}
+ ]},
+ {title:"III. Quyền liên quan (QLQ)",rows:[
+  {k:"Đối tượng & điều kiện bảo hộ",law:"Đ.3.1, Đ.17 LSHTT",v:"Cuộc biểu diễn, bản ghi âm-ghi hình, chương trình phát sóng, tín hiệu vệ tinh mang chương trình được mã hóa. Điều kiện (Đ.17): cuộc biểu diễn do công dân VN thực hiện/người nước ngoài biểu diễn tại VN/định hình tại VN/theo điều ước quốc tế; bản ghi của nhà SX quốc tịch VN hoặc theo điều ước; CT phát sóng của tổ chức quốc tịch VN hoặc theo điều ước. Tất cả không được gây phương hại QTG (K4)."},
+  {k:"Căn cứ phát sinh",law:"K2 Đ.6 LSHTT",v:"Phát sinh kể từ khi cuộc biểu diễn/bản ghi/CT phát sóng/tín hiệu vệ tinh được ĐỊNH HÌNH hoặc THỰC HIỆN mà không gây phương hại QTG."},
+  {k:"Chủ sở hữu QLQ",law:"Đ.44 LSHTT",v:"(a) Người biểu diễn tự đầu tư = CSH quyền với cuộc biểu diễn. (b) Nhà sản xuất bản ghi âm-ghi hình tự đầu tư = CSH quyền với bản ghi. (c) Tổ chức phát sóng tự đầu tư = CSH quyền với CT phát sóng. Nếu không đồng thời là CSH: người biểu diễn hưởng quyền nhân thân, CSH hưởng quyền tài sản. Nhà nước là CSH trong trường hợp tương tự Đ.42."},
+  {k:"Nội dung các quyền QLQ",law:"Đ.29,30,31 LSHTT",v:"Người biểu diễn (Đ.29): quyền nhân thân (giới thiệu tên, bảo vệ toàn vẹn hình tượng biểu diễn) + quyền tài sản độc quyền (định hình, sao chép, phát sóng/truyền đạt, phân phối, cho thuê). Nhà SX bản ghi (Đ.30): sao chép, phân phối, cho thuê, phát sóng/truyền đạt bản ghi. Tổ chức phát sóng (Đ.31): phát/tái phát sóng, sao chép, định hình, phân phối chương trình phát sóng."},
+  {k:"Thời hạn bảo hộ QLQ",law:"Đ.34 LSHTT",v:"Quyền người biểu diễn: 50 năm từ năm tiếp theo năm cuộc biểu diễn được định hình. Quyền nhà SX bản ghi: 50 năm từ năm tiếp theo năm công bố (hoặc 50 năm từ năm tiếp theo năm định hình nếu chưa công bố). Quyền tổ chức phát sóng: 50 năm từ năm tiếp theo năm phát sóng. Kết thúc 24h ngày 31/12 của năm chấm dứt (K4)."},
+  {k:"Ngoại lệ QLQ (miễn phép, miễn phí)",law:"Đ.32 LSHTT",v:"Ghi âm/ghi hình trực tiếp 1 phần để giảng dạy phi TM hoặc đưa tin thời sự; tự sao chép hoặc hỗ trợ người khuyết tật sao chép 1 phần để nghiên cứu/học tập cá nhân; trích dẫn hợp lý đưa tin thời sự; tổ chức phát sóng tự làm bản sao tạm thời khi có quyền phát sóng. Điều kiện: không mâu thuẫn khai thác bình thường, không gây thiệt hại bất hợp lý (K2)."},
+  {k:"Giới hạn QLQ (miễn phép, trả BQ)",law:"Đ.33 LSHTT",v:"(a) TC/CN dùng bản ghi đã công bố TM để phát sóng — trả tiền BQ cho người biểu diễn, nhà SX bản ghi, tổ chức phát sóng. (b) Dùng bản ghi đã công bố TM trong kinh doanh — trả tiền BQ theo thỏa thuận. Quy tắc chung: không mâu thuẫn khai thác bình thường, không gây thiệt hại bất hợp lý (K2). Trường hợp không xác định được CSH QLQ: thực hiện theo quy định Chính phủ (K3)."},
+  {k:"Chuyển giao QLQ",law:"Đ.45–48 (áp dụng)",v:"Chuyển nhượng = chuyển giao quyền SỞ HỮU với quyền tài sản (K3 Đ.29, Đ.30, Đ.31); không chuyển nhượng quyền nhân thân người biểu diễn (K2 Đ.29). Chuyển quyền sử dụng = cho phép dùng có thời hạn; bên nhận có thể chuyển tiếp nếu CSH đồng ý. Hợp đồng phải lập thành văn bản theo nội dung quy định tại Đ.46, 48."}
+ ]},
+ {title:"IV. Quyền sở hữu công nghiệp — điều kiện & đối tượng không được bảo hộ",rows:[
+  {grp:"SÁNG CHẾ (Đ.58–62)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.58,60,61,62",v:"Bằng độc quyền sáng chế: (a) tính mới; (b) trình độ sáng tạo; (c) khả năng áp dụng công nghiệp. Bằng độc quyền GPHI: không phải hiểu biết thông thường + (a) tính mới; (b) khả năng áp dụng CN. Tính mới (Đ.60): chưa bị bộc lộ công khai trong/ngoài nước trước ngày nộp đơn — nộp trong 12 tháng kể từ tự bộc lộ không mất tính mới. Trình độ sáng tạo (Đ.61): bước tiến sáng tạo, không dễ dàng tạo ra với người hiểu biết trung bình. Khả năng áp dụng CN (Đ.62): chế tạo/sản xuất hàng loạt hoặc áp dụng lặp lại, kết quả ổn định."},
+  {k:"Không được bảo hộ",law:"Đ.59",v:"Phát minh, lý thuyết khoa học, phương pháp toán học; sơ đồ/kế hoạch/quy tắc/phương pháp hoạt động trí óc, huấn luyện vật nuôi, trò chơi, kinh doanh, chương trình máy tính; cách thức thể hiện thông tin; giải pháp chỉ mang đặc tính thẩm mỹ; giống thực vật, giống động vật; quy trình SX thực vật/động vật chủ yếu mang bản chất sinh học (trừ quy trình vi sinh); phương pháp phòng ngừa, chẩn đoán, chữa bệnh cho người, động vật."},
+  {grp:"KIỂU DÁNG CÔNG NGHIỆP (Đ.63–67)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.65,66,67",v:"Tính mới (Đ.65): khác biệt đáng kể với KDCN đã bộc lộ; không mất tính mới nếu nộp đơn trong 6 tháng kể từ bị bộc lộ không phép, công bố dạng báo cáo KH, hoặc trưng bày triển lãm. Tính sáng tạo (Đ.66): không dễ dàng tạo ra với người hiểu biết trung bình. Khả năng áp dụng CN (Đ.67): dùng làm mẫu chế tạo hàng loạt bằng phương pháp CN hoặc thủ công nghiệp."},
+  {k:"Không được bảo hộ",law:"Đ.64",v:"Hình dáng bên ngoài do đặc tính kỹ thuật bắt buộc phải có; hình dáng công trình xây dựng dân dụng/công nghiệp; hình dáng sản phẩm không nhìn thấy được trong quá trình sử dụng."},
+  {grp:"THIẾT KẾ BỐ TRÍ MẠCH TÍCH HỢP BÁN DẪN (Đ.68–71)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.70,71",v:"Tính nguyên gốc (Đ.70): kết quả lao động sáng tạo của chính tác giả; chưa được người sáng tạo TKBT và nhà SX mạch tích hợp biết đến rộng rãi tại thời điểm tạo ra. Tính mới thương mại (Đ.71): chưa khai thác thương mại ở bất kỳ đâu trước ngày nộp đơn; không mất tính mới nếu nộp đơn trong 2 năm kể từ khai thác TM lần đầu."},
+  {k:"Không được bảo hộ",law:"Đ.69",v:"Nguyên lý, quy trình, hệ thống, phương pháp được thực hiện bởi mạch tích hợp bán dẫn; thông tin, phần mềm chứa trong mạch tích hợp bán dẫn."},
+  {grp:"NHÃN HIỆU (Đ.72–75)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.72,74,75",v:"Là dấu hiệu nhìn thấy được (chữ cái, từ ngữ, hình vẽ, hình ảnh, hình 3 chiều, màu sắc, âm thanh thể hiện được dạng đồ họa — Đ.72.1); có khả năng phân biệt hàng hóa/dịch vụ của CSH với chủ thể khác (Đ.72.2). Nhãn hiệu nổi tiếng (Đ.75) đánh giá qua: số lượng NTD biết đến, phạm vi lưu hành, doanh số, thời gian sử dụng liên tục, uy tín, số quốc gia bảo hộ, giá chuyển nhượng."},
+  {k:"Không được bảo hộ",law:"Đ.73, Đ.74.2",v:"Trùng/tương tự Quốc kỳ/Quốc huy/Quốc ca; biểu tượng cơ quan NN/tổ chức quốc tế; tên/hình ảnh lãnh tụ, anh hùng dân tộc; dấu chứng nhận quốc tế; gây nhầm lẫn NTD; hình dạng vốn có/do kỹ thuật bắt buộc; bản sao tác phẩm không được phép. Không có KN phân biệt (Đ.74.2): hình/chữ số đơn giản, chữ cái không thông dụng; tên gọi thông thường hàng hóa; mô tả đặc tính/nguồn gốc địa lý hàng hóa; trùng/tương tự NH đã đăng ký trước/NH nổi tiếng/CDĐL đang bảo hộ/tên giống cây trồng được bảo hộ/tên-hình ảnh nhân vật đang nổi tiếng."},
+  {grp:"TÊN THƯƠNG MẠI (Đ.76–78)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.76,78",v:"Có khả năng phân biệt chủ thể kinh doanh cùng lĩnh vực và khu vực kinh doanh (Đ.76). Điều kiện cụ thể (Đ.78): (1) chứa thành phần tên riêng (trừ đã được biết đến rộng rãi); (2) không trùng/tương tự tên TM người khác đã dùng trước cùng lĩnh vực, khu vực; (3) không trùng/tương tự nhãn hiệu hoặc CDĐL đã được bảo hộ trước."},
+  {k:"Không được bảo hộ",law:"Đ.77",v:"Tên của cơ quan nhà nước, tổ chức chính trị, tổ chức CT-XH, tổ chức xã hội-nghề nghiệp hoặc chủ thể không liên quan đến hoạt động kinh doanh."},
+  {grp:"CHỈ DẪN ĐỊA LÝ (Đ.79–83)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.79",v:"(a) Sản phẩm mang CDĐL có nguồn gốc địa lý từ khu vực/địa phương/vùng lãnh thổ/quốc gia tương ứng. (b) Sản phẩm có danh tiếng, chất lượng hoặc đặc tính chủ yếu do điều kiện địa lý của khu vực đó quyết định. CDĐL đồng âm được bảo hộ nếu không gây nhầm lẫn nguồn gốc và đảm bảo đối xử công bằng (K2)."},
+  {k:"Không được bảo hộ",law:"Đ.80",v:"Tên gọi/chỉ dẫn đã trở thành tên chung của hàng hóa theo nhận thức NTD tại VN; CDĐL nước ngoài mà tại nước đó không được/đã mất/không còn bảo hộ; CDĐL trùng/tương tự nhãn hiệu đang bảo hộ hoặc có ngày nộp đơn sớm hơn nếu gây nhầm lẫn nguồn gốc thương mại; CDĐL gây hiểu sai lệch cho NTD về nguồn gốc địa lý thực sự."},
+  {grp:"BÍ MẬT KINH DOANH (Đ.84–85)"},
+  {k:"Điều kiện bảo hộ",law:"Đ.84",v:"(1) Không phải hiểu biết thông thường và không dễ dàng có được. (2) Khi được sử dụng trong kinh doanh tạo lợi thế so với người không nắm giữ BMKD. (3) Được CSH bảo mật bằng biện pháp cần thiết để không bị bộc lộ, không dễ dàng tiếp cận."},
+  {k:"Không được bảo hộ",law:"Đ.85",v:"Bí mật về nhân thân; bí mật về quản lý nhà nước; bí mật về quốc phòng, an ninh; thông tin bí mật khác không liên quan đến kinh doanh."}
+ ]},
+ {title:"V. Quyền sở hữu công nghiệp — chủ sở hữu",rows:[
+  {k:"Sáng chế, KDCN, TKBT",law:"Đ.121.1, Đ.86",v:"CSH là TC/CN được cơ quan có thẩm quyền CẤP văn bằng bảo hộ. Quyền đăng ký (Đ.86): (a) tác giả tự tạo ra bằng công sức, chi phí của mình; (b) TC/CN đầu tư kinh phí, phương tiện cho tác giả dưới hình thức giao việc/thuê việc. Tác giả (Đ.122): người trực tiếp sáng tạo — có quyền nhân thân (ghi tên trong VBBH) + quyền tài sản (nhận thù lao theo Đ.135)."},
+  {k:"Nhãn hiệu",law:"Đ.121.1, Đ.87",v:"CSH là TC/CN được cấp GCN ĐKNH hoặc có nhãn hiệu đăng ký quốc tế được công nhận hoặc có nhãn hiệu nổi tiếng. Quyền đăng ký (Đ.87): TC/CN có hàng hóa/dịch vụ; TC/CN kinh doanh TM hợp pháp; tổ chức tập thể đăng ký NHTT; tổ chức kiểm soát/chứng nhận đăng ký NHCN. Nhãn hiệu nổi tiếng xác lập trên cơ sở SỬ DỤNG, không cần đăng ký."},
+  {k:"Tên thương mại",law:"Đ.121.2",v:"CSH là TC/CN sử dụng hợp pháp tên thương mại đó trong hoạt động kinh doanh. Quyền xác lập từ việc sử dụng, không cần đăng ký."},
+  {k:"Bí mật kinh doanh",law:"Đ.121.3",v:"CSH là TC/CN có được BMKD hợp pháp và thực hiện việc bảo mật BMKD đó. BMKD mà bên làm thuê/bên thực hiện nhiệm vụ có được trong khi làm việc thuộc quyền sở hữu của bên thuê/bên giao việc, trừ thỏa thuận khác."},
+  {k:"Chỉ dẫn địa lý",law:"Đ.121.4, Đ.88",v:"CSH CDĐL của VN là NHÀ NƯỚC; quyền đăng ký thuộc về Nhà nước. Nhà nước trao quyền sử dụng cho TC/CN sản xuất sản phẩm mang CDĐL tại địa phương tương ứng. TC/CN nước ngoài là CSH CDĐL theo pháp luật nước xuất xứ có quyền đăng ký tại VN (K2 Đ.88)."}
+ ]},
+ {title:"VI. Quyền sở hữu công nghiệp — nội dung & giới hạn quyền",rows:[
+  {k:"Quyền của CSH đối tượng SHCN",law:"Đ.123",v:"3 nhóm quyền tài sản: (a) sử dụng/cho phép sử dụng; (b) ngăn cấm người khác sử dụng; (c) định đoạt (chuyển nhượng, chuyển quyền sử dụng). TC/CN được trao quyền sử dụng CDĐL/quyền quản lý CDĐL cũng có quyền ngăn cấm người khác (K2)."},
+  {k:"Hành vi không bị cấm (ngoại lệ)",law:"Đ.125.2",v:"CSH KHÔNG có quyền cấm người khác: dùng SC/KDCN/TKBT phục vụ cá nhân, phi TM, đánh giá, nghiên cứu, giảng dạy, thử nghiệm, SX thử, thu thập thông tin xin phép SX/NK/lưu hành; lưu thông/NK/khai thác sản phẩm do CSH hoặc người được chuyển giao đưa ra thị trường (nguyên tắc hết quyền); dùng chỉ để duy trì phương tiện vận tải nước ngoài quá cảnh/tạm thời; người có quyền sử dụng trước (Đ.134); người được NN cho phép theo Đ.145-146 (bắt buộc chuyển giao); dùng TKBT khi không biết/không có nghĩa vụ biết TKBT được bảo hộ; dùng NH trùng/tương tự CDĐL nếu NH đã bảo hộ trung thực trước ngày nộp đơn CDĐL."},
+  {k:"Quyền sử dụng trước",law:"Đ.134",v:"Người đã sử dụng/chuẩn bị sử dụng SC, KDCN đồng nhất được tạo ra độc lập trước ngày nộp đơn có quyền TIẾP TỤC SỬ DỤNG trong phạm vi và khối lượng đã dùng mà không cần xin phép/trả đền bù. Không được chuyển giao quyền này (trừ chuyển giao cùng cơ sở kinh doanh)."},
+  {k:"Bắt buộc chuyển giao sáng chế",law:"Đ.145–147",v:"Căn cứ (Đ.145): mục đích công cộng, phi TM, quốc phòng, an ninh, y tế, dân sinh; CSH không SX/áp dụng sau 4 năm từ nộp đơn và 3 năm từ cấp bằng; CSH không đạt thỏa thuận dù đã cố gắng thương lượng; CSH hạn chế cạnh tranh bị cấm; đáp ứng nhu cầu dược phẩm cho nước khác đủ điều kiện nhập khẩu. Điều kiện (Đ.146): không độc quyền; giới hạn phạm vi/thời hạn; không được chuyển nhượng lại; chủ yếu cung cấp thị trường trong nước; đền bù thỏa đáng. Thẩm quyền (Đ.147): Bộ KH&CN (trường hợp chung) hoặc Bộ/cơ quan ngang Bộ quản lý ngành (vài trường hợp)."}
+ ]},
+ {title:"VII. Quyền sở hữu công nghiệp — chuyển giao quyền",rows:[
+  {k:"Chuyển nhượng QSHCN",law:"Đ.138–140, 148.1",v:"CSH chuyển giao quyền SỞ HỮU cho TC/CN khác bằng hợp đồng văn bản. Hạn chế (Đ.139): chỉ chuyển nhượng trong phạm vi được bảo hộ; quyền với CDĐL KHÔNG được chuyển nhượng; quyền với tên TM chỉ chuyển nhượng cùng toàn bộ cơ sở kinh doanh; chuyển nhượng NH không được gây nhầm lẫn đặc tính/nguồn gốc; chỉ chuyển nhượng NH cho chủ thể đáp ứng điều kiện có quyền đăng ký NH đó. Hiệu lực (Đ.148.1): hợp đồng xác lập trên cơ sở đăng ký CHỈ CÓ HIỆU LỰC khi đã đăng ký tại cơ quan quản lý NN về QSHCN."},
+  {k:"Chuyển quyền sử dụng (li-xăng)",law:"Đ.141–144, 148.2-3",v:"CSH cho phép TC/CN khác sử dụng đối tượng SHCN trong phạm vi quyền của mình, bằng hợp đồng văn bản. Hạn chế (Đ.142): quyền sử dụng CDĐL và tên TM KHÔNG được chuyển giao; quyền sử dụng NHTT không chuyển giao cho chủ thể không phải thành viên CSH NHTT; bên nhận không ký HĐ thứ cấp trừ được cho phép; bên nhận NH phải ghi chỉ dẫn trên hàng hóa/bao bì. 3 dạng hợp đồng (Đ.143): độc quyền; không độc quyền; thứ cấp. Cấm điều khoản hạn chế bất hợp lý (Đ.144.2): cấm cải tiến đối tượng SHCN (trừ NH); hạn chế xuất khẩu; buộc mua nguyên liệu/linh kiện từ bên chuyển quyền không vì chất lượng; cấm khiếu kiện về hiệu lực QSHCN. Hiệu lực: HĐ sử dụng có hiệu lực theo thỏa thuận; phải đăng ký để có giá trị với bên thứ ba (trừ HĐ sử dụng NH)."}
+ ]},
+ {title:"VIII. Quyền đối với giống cây trồng",rows:[
+  {k:"Đối tượng & chủ thể được bảo hộ",law:"Đ.3.3, Đ.4.24, Đ.157",v:"Đối tượng: VẬT LIỆU NHÂN GIỐNG và VẬT LIỆU THU HOẠCH của giống cây trồng mới. Giống cây trồng: quần thể cây trồng cùng 1 cấp phân loại thực vật thấp nhất, đồng nhất về hình thái, ổn định qua các chu kỳ nhân giống, phân biệt được với quần thể khác bằng ít nhất 1 tính trạng có khả năng di truyền. Chủ thể (Đ.157): người chọn tạo/phát hiện-phát triển giống; người đầu tư cho công tác đó; người được chuyển giao quyền. TC/CN Việt Nam; nước ngoài là công dân/tổ chức quốc gia thành viên UPOV hoặc có thỏa thuận với VN, hoặc có cơ sở SX-KD tại VN."},
+  {k:"5 điều kiện bảo hộ",law:"Đ.158–163",v:"Phải đáp ứng ĐỦ 5 điều kiện: (1) Tính mới (Đ.159) — vật liệu nhân giống/sản phẩm thu hoạch chưa được bán/phân phối trước ngày nộp đơn 1 năm (tại VN), 6 năm (giống thân gỗ/leo thân gỗ, ngoài VN), 4 năm (giống khác, ngoài VN). (2) Tính khác biệt (Đ.160) — phân biệt rõ ràng với giống đã biết đến rộng rãi. (3) Tính đồng nhất (Đ.161) — biểu hiện tính trạng như nhau, trừ sai lệch cho phép. (4) Tính ổn định (Đ.162) — tính trạng giữ nguyên qua các chu kỳ nhân giống. (5) Tên phù hợp (Đ.163) — trùng tên đã đăng ký ở quốc gia UPOV (nếu có); dễ phân biệt; không vi phạm đạo đức, không trùng/gây nhầm lẫn với NH, TTM, CDĐL đã bảo hộ."},
+  {k:"Căn cứ xác lập & quyền đăng ký",law:"Đ.6.4, Đ.164, Đ.183",v:"Quyền đối với giống cây trồng xác lập trên cơ sở QUYẾT ĐỊNH CẤP BẰNG bảo hộ — khác QTG (tự động phát sinh), quyền GCT BẮT BUỘC phải đăng ký. Người có quyền đăng ký (Đ.164): tác giả trực tiếp chọn tạo bằng công sức/chi phí; TC/CN đầu tư cho tác giả dưới hình thức giao việc/thuê việc; TC/CN được chuyển giao, thừa kế quyền đăng ký. Người đăng ký và được cấp Bằng là CHỦ SỞ HỮU (Đ.183)."},
+  {k:"Thời hạn, đình chỉ, hủy bỏ",law:"Đ.169–171",v:"Thời hạn (Đ.169): 25 năm (giống thân gỗ, cây leo thân gỗ) hoặc 20 năm (giống khác) kể từ ngày cấp Bằng; phải nộp lệ phí duy trì hằng năm; hiệu lực trên toàn lãnh thổ VN. Đình chỉ (Đ.170): giống không còn đồng nhất/ổn định; chủ Bằng không nộp phí/không cung cấp vật liệu nhân giống duy trì/không đổi tên theo yêu cầu — có thể phục hồi trong 30–90 ngày tùy trường hợp. Hủy bỏ (Đ.171): người đăng ký không có quyền đăng ký; giống không đáp ứng tính mới/khác biệt/đồng nhất/ổn định tại thời điểm cấp — giao dịch phát sinh trên Bằng bị hủy đều vô hiệu, xử lý theo BLDS."},
+  {k:"Tác giả & nội dung quyền",law:"Đ.185–187, 191",v:"Tác giả giống cây trồng KHÔNG nhất thiết là CSH — có quyền được ghi tên trong Bằng/Sổ đăng ký/tài liệu công bố + nhận thù lao theo Đ.191. Quyền chủ Bằng (Đ.186): sử dụng hoặc cho phép người khác sử dụng vật liệu nhân giống (SX/nhân giống, chế biến nhằm nhân giống, chào hàng, bán/tiếp cận thị trường, xuất khẩu, nhập khẩu, lưu giữ); mở rộng đến vật liệu thu hoạch nếu dùng bất hợp pháp vật liệu nhân giống (K2), và theo Đ.187 với giống có nguồn gốc chủ yếu từ giống được bảo hộ. Nghĩa vụ chủ Bằng (Đ.191): trả thù lao tác giả (10% lợi nhuận trước thuế nếu tự dùng; 15% phí chuyển giao SD; 35% phí chuyển nhượng lần đầu — trừ thỏa thuận khác); nộp lệ phí duy trì; lưu giữ giống, cung cấp thông tin/vật liệu theo yêu cầu."},
+  {k:"Giới hạn & ngoại lệ",law:"Đ.189, 190",v:"Không cần xin phép, không trả tiền (K1 Đ.190): dùng phục vụ cá nhân, phi TM; dùng thử nghiệm; dùng để tạo giống khác (trừ giống phái sinh); hộ sản xuất cá thể tự nhân giống và gieo trồng vụ sau trên đất của mình — quyền của nông dân. Nguyên tắc hết quyền (K2 Đ.190): không áp dụng với vật liệu đã được chính chủ Bằng/người được phép bán/đưa ra thị trường — trừ nhân tiếp giống đó, hoặc xuất khẩu vật liệu nhân giống sang nước không bảo hộ giống/loài đó. Quyền tạm thời (Đ.189): phát sinh từ ngày đơn công bố đến ngày cấp Bằng; nếu không được cấp Bằng thì không có quyền này; nếu người đã được thông báo vẫn tiếp tục sử dụng, sau khi cấp Bằng chủ Bằng có quyền yêu cầu đền bù tương đương giá chuyển giao quyền sử dụng."},
+  {k:"Chuyển giao quyền",law:"Đ.192–197",v:"A. Chuyển quyền SỬ DỤNG/li-xăng (Đ.192,193): chủ Bằng cho phép người khác thực hiện 1/một số hành vi thuộc quyền sử dụng; đồng CSH phải ĐỒNG Ý CỦA TẤT CẢ; hợp đồng văn bản, không điều khoản hạn chế bất hợp lý. B. Chuyển NHƯỢNG/sở hữu (Đ.194): chủ Bằng chuyển giao TOÀN BỘ quyền; bên nhận trở thành chủ Bằng kể từ ngày hợp đồng được ĐĂNG KÝ tại cơ quan QLNN. C. Bắt buộc chuyển giao: căn cứ (Đ.195.1) mục đích công cộng/phi TM/quốc phòng/an ninh lương thực, không đạt thỏa thuận dù đã cố gắng, hoặc hạn chế cạnh tranh bị cấm; điều kiện (Đ.195.3) không độc quyền, giới hạn phạm vi/thời hạn, chủ yếu cung cấp thị trường trong nước, không chuyển nhượng/thứ cấp, đền bù thỏa đáng; thẩm quyền (Đ.196) Bộ NN&PTNT hoặc Bộ/cơ quan ngang Bộ khác (tham khảo ý kiến Bộ NN&PTNT); quyền của CSH khi bị bắt buộc CG (Đ.197): nhận đền bù tương đương giá trị kinh tế; yêu cầu sửa đổi/đình chỉ/hủy bỏ nếu điều kiện dẫn đến CG không còn và không gây thiệt hại cho người được CG."}
+ ]}
 ];
 
 /* Thời hiệu xử lý vi phạm / khởi kiện — KHÁC với "thời hạn bảo hộ" (bvq-ss):
@@ -607,6 +715,28 @@ const ITEMS=[
 {id:"kdcn-congbo",group:"kdcn",kind:"dk",stage:"congbo",title:"Công bố đơn KDCN",lede:"~1 tháng kể từ ngày đơn hợp lệ (trước 01/4/2026: 2 tháng)",law:"Đ.110.3 LSHTT (sđ Luật 131/2025/QH15)",body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Đơn được đăng công khai để ai cũng biết và có thể phản đối nếu thấy kiểu dáng này giống sản phẩm họ đã có từ trước.</div><p>Đăng Công báo Sở hữu công nghiệp trong khoảng <b>1 tháng</b> kể từ ngày đơn được coi là hợp lệ. <i>Luật 131/2025/QH15 rút ngắn từ 2 tháng xuống 1 tháng, áp dụng cho đơn công bố từ 01/4/2026.</i></p><p>Luật mới cũng bổ sung thời hạn <b>phản đối đơn KDCN: 3 tháng</b> kể từ ngày công bố (Đ.112a.1.b) — trước đây không quy định riêng.</p>`},
 {id:"kdcn-noidung",group:"kdcn",kind:"dk",stage:"noidung",title:"Thẩm định nội dung KDCN",lede:"~5 tháng kể từ ngày công bố (trước 01/4/2026: 7 tháng)",law:"Đ.119.2 LSHTT (sđ Luật 131/2025/QH15)",body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Cơ quan kiểm tra xem hình dáng sản phẩm có thực sự mới, có khác biệt đáng kể so với những sản phẩm đã có trên thị trường hoặc đã công bố trước đó hay không.</div><p>Đánh giá tính mới, tính sáng tạo, khả năng áp dụng công nghiệp trong khoảng <b>5 tháng</b> kể từ ngày công bố đơn. <i>Luật 131/2025/QH15 rút ngắn từ 7 tháng xuống 5 tháng; luật cũng mở rộng các trường hợp bộc lộ không làm mất tính mới của kiểu dáng công nghiệp.</i></p>`},
 {id:"kdcn-capvb",group:"kdcn",kind:"dk",stage:"capvb",title:"Cấp Bằng độc quyền KDCN",lede:"Hiệu lực 5 năm, gia hạn 2 lần",law:"Đ.93 LSHTT",body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Bạn được cấp Bằng độc quyền kiểu dáng — bảo hộ tối đa 15 năm (5 năm ban đầu, gia hạn thêm 2 lần, mỗi lần 5 năm).</div><p>Cấp Bằng độc quyền kiểu dáng công nghiệp sau khi thẩm định nội dung đạt yêu cầu.</p>`},
+
+/* ---------- THIẾT KẾ BỐ TRÍ MẠCH TÍCH HỢP BÁN DẪN ---------- */
+{id:"tkbt-nc",group:"tkbt",kind:"nc",title:"Nghiên cứu: Thiết kế bố trí mạch tích hợp bán dẫn",
+ lede:"Cấu trúc không gian của mạch điện tử — chỉ thẩm định hình thức, không thẩm định nội dung",
+ law:"K15 Đ.4 ⚑; Đ.68-71,93.5 LSHTT",
+ body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Thiết kế bố trí giống như "bản đồ quy hoạch" bên trong 1 con chip — cách sắp xếp hàng nghìn linh kiện điện tử theo không gian 3 chiều để mạch hoạt động đúng. Luật bảo hộ chính cách "bố trí" đó, không bảo hộ nguyên lý hay chức năng của mạch.</div><h4>Khái niệm</h4><p>Cấu trúc không gian của các phần tử mạch và mối liên kết các phần tử đó trong mạch tích hợp bán dẫn.</p>
+ <h4>Điều kiện bảo hộ (Đ.68)</h4><ul><li>Tính nguyên gốc (Đ.70) — là kết quả lao động sáng tạo của chính tác giả; chưa được người sáng tạo TKBT và nhà sản xuất mạch tích hợp biết đến rộng rãi tại thời điểm tạo ra</li><li>Tính mới thương mại (Đ.71) — chưa được khai thác thương mại ở bất kỳ đâu trên thế giới trước ngày nộp đơn; không mất tính mới nếu nộp đơn trong 2 năm kể từ ngày khai thác thương mại lần đầu</li></ul>
+ <h4>Đối tượng KHÔNG được bảo hộ (Đ.69)</h4><ul><li>Nguyên lý, quy trình, hệ thống, phương pháp được thực hiện bởi mạch tích hợp bán dẫn</li><li>Thông tin, phần mềm chứa trong mạch tích hợp bán dẫn</li></ul>
+ <h4>Thời hạn bảo hộ (Đ.93.5)</h4><p>Chấm dứt vào ngày <b>SỚM NHẤT</b> trong 3 mốc: (a) 10 năm kể từ ngày nộp đơn; (b) 10 năm kể từ ngày khai thác thương mại lần đầu; (c) 15 năm kể từ ngày tạo ra TKBT.</p>
+ <p class="note">📌 Khác với sáng chế/KDCN/nhãn hiệu: đơn đăng ký TKBT chỉ qua <b>thẩm định hình thức</b>, không qua thẩm định nội dung — thông tin về đơn/văn bằng chỉ được công bố <b>sau khi cấp</b> (trong 2 tháng kể từ ngày cấp), không công bố trước như các đối tượng khác.</p>`},
+{id:"tkbt-chuanbi",group:"tkbt",kind:"dk",stage:"chuanbi",title:"Chuẩn bị hồ sơ đăng ký TKBT",
+ lede:"Bản vẽ/ảnh chụp cấu trúc layout, thông tin ngày tạo ra/khai thác thương mại",
+ law:"TT 23/2023/TT-BKHCN",
+ body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Bạn cần nộp bản vẽ/ảnh chụp thể hiện cấu trúc không gian của mạch, kèm thông tin về thời điểm tạo ra và thời điểm (nếu có) đã khai thác thương mại lần đầu — vì 2 mốc thời gian này quyết định thời hạn bảo hộ sau này.</div><ul><li>Tờ khai đăng ký thiết kế bố trí</li><li>Bộ ảnh chụp/bản vẽ thể hiện từng lớp cấu trúc thiết kế bố trí</li><li>Thông tin chức năng của mạch tích hợp bán dẫn</li><li>Mẫu mạch tích hợp (nếu thiết kế đã được khai thác thương mại)</li><li>Chứng từ phí, lệ phí; giấy ủy quyền nếu có</li></ul>`},
+{id:"tkbt-nopdon",group:"tkbt",kind:"dk",stage:"nopdon",title:"Thẩm định hình thức TKBT",
+ lede:"Chỉ thẩm định hình thức — không thẩm định nội dung",
+ law:"TT 23/2023/TT-BKHCN, Đ.9",
+ body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Khác với sáng chế hay nhãn hiệu, hồ sơ TKBT chỉ bị kiểm tra "có đủ giấy tờ, đúng mẫu hay không" — cơ quan không thẩm định xem thiết kế có thực sự mới/nguyên gốc hay không trước khi cấp.</div><p>Cục SHTT kiểm tra đơn có đáp ứng yêu cầu về hình thức theo Đ.9 TT 23/2023/TT-BKHCN hay không.</p><ul><li>Đơn hợp lệ → ra Thông báo dự định cấp Giấy chứng nhận, người nộp đơn có <b>3 tháng</b> để nộp phí/lệ phí</li><li>Đơn có thiếu sót → Thông báo dự định từ chối; người nộp đơn có <b>2 tháng</b> (hoặc 3 tháng nếu liên quan chứng minh quyền ưu tiên) để sửa chữa/phản hồi</li></ul>`},
+{id:"tkbt-capvb",group:"tkbt",kind:"dk",stage:"capvb",title:"Cấp GCN đăng ký TKBT & công bố",
+ lede:"Công bố SAU khi cấp (trong 2 tháng) — khác các đối tượng khác",
+ law:"K5 Đ.93 LSHTT",
+ body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Bạn được cấp Giấy chứng nhận đăng ký thiết kế bố trí; thông tin về việc cấp này mới được công bố công khai sau đó, không như sáng chế/nhãn hiệu phải công bố đơn trước khi xét duyệt.</div><p>Cấp Giấy chứng nhận đăng ký thiết kế bố trí mạch tích hợp bán dẫn và ghi nhận vào Sổ đăng ký quốc gia. Thông tin cơ bản về đơn/văn bằng được công bố trong <b>2 tháng</b> kể từ ngày cấp.</p>`},
 
 /* ---------- NHÃN HIỆU ---------- */
 {id:"nh-nc",group:"nh",kind:"nc",title:"Nghiên cứu: Nhãn hiệu",
@@ -956,7 +1086,27 @@ function renderDuration(){
     if(r.grp) return `<tr class="grp"><td colspan="3">${esc(r.grp)}</td></tr>`;
     return `<tr><td class="k">${esc(r.k)}</td><td><b>${esc(r.v)}</b><br><span style="color:var(--muted);font-size:12.5px">${esc(r.note)}</span></td><td class="cspl">${esc(r.cspl)}</td></tr>`;
   }).join("");
+  const amendNotice=`<div class="amendnotice" role="note">
+    <div class="amendnotice-head"><span class="amendnotice-title">⚡ <b>Cập nhật Luật số 131/2025/QH15</b></span><span class="amendnotice-badge">Hiệu lực 01/4/2026</span></div>
+    <p class="amendnotice-lede">Thông qua 10/12/2025 — sửa đổi, bổ sung hơn 70 điều của LSHTT. Các mục liên quan trong trang này đã được cập nhật và đánh dấu; một số số liệu còn gắn cờ <b>⚑</b> cần đối chiếu bản hợp nhất chính thức trước khi dùng trong văn bản.</p>
+    <table class="amendnotice-table"><tbody>
+      <tr class="grp"><td colspan="2">⏱ Rút ngắn thời hạn thẩm định / công bố</td></tr>
+      <tr><td class="k">Công bố đơn SHCN</td><td>2 tháng → 1 tháng</td></tr>
+      <tr><td class="k">Thẩm định nội dung sáng chế</td><td>18 tháng → 12 tháng</td></tr>
+      <tr><td class="k">Thẩm định nội dung nhãn hiệu</td><td>9 tháng → 5 tháng</td></tr>
+      <tr><td class="k">Thẩm định nội dung KDCN</td><td>7 tháng → 5 tháng</td></tr>
+      <tr><td class="k">Cơ chế thẩm định nhanh</td><td>Bổ sung mới</td></tr>
+      <tr class="grp"><td colspan="2">⚖ Tăng mức xử lý vi phạm</td></tr>
+      <tr><td class="k">Mức bồi thường thiệt hại ấn định</td><td>500 triệu → 1 tỷ đồng</td></tr>
+      <tr class="grp"><td colspan="2">📌 Bổ sung quy định mới</td></tr>
+      <tr><td class="k">Đ.7</td><td>Giới hạn quyền SHTT</td></tr>
+      <tr><td class="k">Đ.112a</td><td>Phản đối đơn kiểu dáng công nghiệp</td></tr>
+      <tr><td class="k">Quy định về AI</td><td>Bổ sung các quy định mới liên quan đến AI trong SHTT</td></tr>
+    </tbody></table>
+    <div class="amendnotice-foot">Xem chi tiết các thay đổi theo từng đối tượng ở tab <b>Hồ sơ · Thủ tục</b> và tab <b>Thời hạn · Thời hiệu</b>.</div>
+  </div>`;
   host.innerHTML=`
+    ${amendNotice}
     <div class="dur-card">
       <div class="eli5"><b>💡 Hiểu đơn giản</b>Hai khái niệm dễ nhầm: <b>"Thời hạn bảo hộ"</b> là quyền của bạn tồn tại/có hiệu lực trong bao lâu (giống hạn dùng của 1 "tài sản"). <b>"Thời hiệu"</b> là bạn còn bao nhiêu thời gian để đi kiện/khiếu nại/yêu cầu xử phạt kể từ khi phát hiện bị xâm phạm — hết thời hiệu thì dù quyền vẫn còn, bạn cũng mất quyền khởi kiện/xử phạt theo đường đó.</div>
       <h2>⏳ Thời hạn bảo hộ theo đối tượng</h2>
@@ -990,16 +1140,31 @@ function renderCases(){
     <p class="note" style="margin-top:14px">📌 Thông tin tổng hợp từ nguồn báo chí/quyết định công khai, có thể chưa đầy đủ mọi diễn biến tố tụng — nên tra cứu bản án/quyết định gốc nếu cần trích dẫn chính thức. ⚑</p>`;
 }
 
-const RADIAL_MIN_WIDTH=900;
+function renderSummary(){
+  const host=document.getElementById("view");
+  const sections=SUMMARY.map((sec,idx)=>{
+    const rows=sec.rows.map(r=>{
+      if(r.grp) return `<tr class="grp"><td colspan="3">${esc(r.grp)}</td></tr>`;
+      return `<tr><td class="k">${esc(r.k)}</td><td class="cspl">${esc(r.law)}</td><td>${esc(r.v)}</td></tr>`;
+    }).join("");
+    return `<details class="sum-acc"${idx===0?" open":""}>
+      <summary><span class="sum-row"><span class="sum-arrow">▸</span><span class="sum-title">${esc(sec.title)}</span><span class="sum-count">${sec.rows.filter(r=>!r.grp).length} mục</span></span></summary>
+      <table class="ai-table"><thead><tr><th>Nội dung</th><th>Điều luật</th><th>Tóm tắt</th></tr></thead><tbody>${rows}</tbody></table>
+    </details>`;
+  }).join("");
+  host.innerHTML=`
+    <div class="eli5" style="margin-bottom:4px"><b>💡 Hiểu đơn giản</b>Đây là bảng tra cứu nhanh dạng "Nội dung — Điều luật — Tóm tắt", gọn hơn các thẻ Lý thuyết (vốn có phần giải thích "Hiểu đơn giản" chi tiết). Bấm vào tiêu đề từng phần để mở/đóng.</div>
+    <div class="sum-wrap">${sections}</div>
+    <p class="note" style="margin-top:14px">📌 Tổng hợp theo cấu trúc LSHTT hiện hành, đối chiếu Luật 131/2025/QH15 — luôn kiểm tra lại bản hợp nhất chính thức trước khi dùng trong văn bản/tư vấn chính thức. ⚑</p>`;
+}
 
 function renderHome(){
   const view=document.getElementById("view");
   if(query){ renderList(view); return; }
-  if(window.innerWidth>=RADIAL_MIN_WIDTH){ renderHomeRadial(view); }
-  else { renderHomeStack(view); }
+  renderHomeStack(view);
 }
 
-/* ---- dạng cây phân cấp (mobile / màn hẹp) ---- */
+/* ---- dạng cây phân cấp (4 nhánh, đường nối thẳng — dùng cho mọi kích thước màn hình) ---- */
 function renderHomeStack(view){
   const trunk=BIGGROUPS.map(bg=>{
     const subs=GROUPS.filter(g=>g.big===bg.id);
@@ -1013,109 +1178,27 @@ function renderHomeStack(view){
     </div>`;
   }).join("");
   view.innerHTML=`
-    <div class="sect-label" style="margin-top:0">Sơ đồ tư duy tổng quan</div>
+    ${aiCardHtml()}
+    <div class="sect-label">Sơ đồ tư duy tổng quan</div>
     <div class="mm-wrap">
       <div class="mm-root"><b>Luật Sở hữu trí tuệ</b><small>3 nhóm lớn + bảo vệ quyền</small></div>
       <div class="mm-trunks">${trunk}</div>
     </div>
-    ${aiCardHtml()}
     <div class="sect-label">Quy trình đăng ký — bấm để xem chi tiết ở tab Hồ sơ · Thủ tục</div>
     <div class="hp-track">${trackHtml()}</div>`;
   wireHomeClicks(view);
 }
-
-/* ---- sơ đồ tư duy tỏa tròn (desktop) — phỏng theo bố cục mindmap 4 nhánh màu ---- */
-const RADIAL_QUAD={tg:"ne",cn:"se",gt:"sw",bv:"nw"};
-function renderHomeRadial(view){
-  const quads=["nw","ne","sw","se"];
-  const byQuad={}; quads.forEach(q=>byQuad[q]=BIGGROUPS.find(bg=>RADIAL_QUAD[bg.id]===q));
-  const quadHtml=quads.map(q=>{
-    const bg=byQuad[q];
-    const subs=GROUPS.filter(g=>g.big===bg.id);
-    const leaves=subs.map(g=>`<li><div class="mm-tleaf" data-leaf="${g.id}">
-        <b>${esc(g.label)}</b><small>${esc(g.desc)}</small>
-        ${leafLinksHtml(g)}
-      </div></li>`).join("");
-    return `<div class="mm-quad mm-quad-${q}">
-      <div class="mm-thead" data-trunk="${bg.id}" data-quad="${q}"><b>${esc(bg.label)}</b><small>${esc(bg.desc)}</small></div>
-      <ul class="mm-tleaves">${leaves}</ul>
-    </div>`;
-  }).join("");
-  view.innerHTML=`
-    <div class="sect-label" style="margin-top:0">Sơ đồ tư duy tổng quan</div>
-    <div class="mm-radial" id="mmRadial">
-      <svg class="mm-lines" id="mmLines" aria-hidden="true"></svg>
-      <div class="mm-rroot" id="mmRoot"><b>Luật Sở hữu<br>trí tuệ</b><small>3 nhóm lớn + bảo vệ quyền</small></div>
-      ${quadHtml}
-    </div>
-    ${aiCardHtml()}
-    <div class="sect-label">Quy trình đăng ký — bấm để xem chi tiết ở tab Hồ sơ · Thủ tục</div>
-    <div class="hp-track">${trackHtml()}</div>`;
-  wireHomeClicks(view);
-  requestAnimationFrame(drawRadialLines);
-}
-
-function colorVarForBig(big){
-  return big==="tg"?"var(--mmI)":big==="cn"?"var(--mmII)":big==="gt"?"var(--mmIII)":"var(--mmIV)";
-}
-function nearCorner(rect,wrapRect,quad){
-  const isLeft = quad==="nw"||quad==="sw";
-  const isTop = quad==="nw"||quad==="ne";
-  return {x:(isLeft?rect.right:rect.left)-wrapRect.left, y:(isTop?rect.bottom:rect.top)-wrapRect.top};
-}
-function curvePath(p1,p2){
-  const dx=(p2.x-p1.x)*0.55;
-  return `M ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} C ${(p1.x+dx).toFixed(1)} ${p1.y.toFixed(1)}, ${(p2.x-dx).toFixed(1)} ${p2.y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
-}
-function drawRadialLines(){
-  const svg=document.getElementById("mmLines");
-  const wrap=document.getElementById("mmRadial");
-  const rootEl=document.getElementById("mmRoot");
-  if(!svg||!wrap||!rootEl) return;
-  const wrapRect=wrap.getBoundingClientRect();
-  if(!wrapRect.width||!wrapRect.height) return;
-  // Các nhánh cao thấp khác nhau (vd. nhánh SHCN có 5 mục) nên hàng lưới không đều —
-  // đặt lại tâm "Luật SHTT" đúng vào ranh giới giữa hàng trên/hàng dưới để không đè lên tiêu đề nhánh.
-  const nwQ=wrap.querySelector(".mm-quad-nw"), swQ=wrap.querySelector(".mm-quad-sw");
-  if(nwQ&&swQ){
-    const nwR=nwQ.getBoundingClientRect(), swR=swQ.getBoundingClientRect();
-    const midY=((nwR.bottom+swR.top)/2)-wrapRect.top;
-    rootEl.style.top=midY+"px";
-  }
-  svg.setAttribute("viewBox",`0 0 ${wrapRect.width} ${wrapRect.height}`);
-  svg.style.width=wrapRect.width+"px"; svg.style.height=wrapRect.height+"px";
-  const rr=rootEl.getBoundingClientRect();
-  const rootPt={x:rr.left+rr.width/2-wrapRect.left, y:rr.top+rr.height/2-wrapRect.top};
-  let out="";
-  wrap.querySelectorAll(".mm-thead").forEach(th=>{
-    const big=th.dataset.trunk, quad=th.dataset.quad, color=colorVarForBig(big);
-    const tr=th.getBoundingClientRect();
-    const trunkPt=nearCorner(tr,wrapRect,quad);
-    out+=`<path d="${curvePath(rootPt,trunkPt)}" stroke="${color}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>`;
-    th.parentElement.querySelectorAll(".mm-tleaf").forEach(leafEl=>{
-      const lr=leafEl.getBoundingClientRect();
-      const leafPt=nearCorner(lr,wrapRect,quad);
-      out+=`<path d="${curvePath(trunkPt,leafPt)}" stroke="${color}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>`;
-    });
-  });
-  svg.innerHTML=out;
-}
-let homeResizeT;
-window.addEventListener("resize",()=>{
-  if(page!=="home"||query) return;
-  clearTimeout(homeResizeT);
-  homeResizeT=setTimeout(()=>{ renderHome(); },150);
-});
 
 function goPage(p){
   page=p;
   document.getElementById("tabHome").setAttribute("aria-pressed", String(p==="home"));
   document.getElementById("tabTheory").setAttribute("aria-pressed", String(p==="theory"));
+  document.getElementById("tabSummary").setAttribute("aria-pressed", String(p==="summary"));
   document.getElementById("tabFiling").setAttribute("aria-pressed", String(p==="filing"));
   document.getElementById("tabDuration").setAttribute("aria-pressed", String(p==="duration"));
   document.getElementById("tabCases").setAttribute("aria-pressed", String(p==="cases"));
-  const titles={home:"Bản đồ tổng quan Luật Sở hữu trí tuệ",theory:"Bạn đang tra cứu đối tượng nào?",filing:"Hồ sơ của bạn đang ở bước nào?",duration:"Bạn muốn tra thời hạn hay thời hiệu?",cases:"Thực tiễn áp dụng: các vụ tranh chấp đã xảy ra"};
-  const subs={home:"Bấm vào 1 nhóm trong sơ đồ để xem lý thuyết, hoặc 1 bước trong quy trình để xem hồ sơ/thủ tục. Gõ từ khóa vào ô tìm để tra nhanh toàn bộ nội dung.",theory:"Chọn một nhóm quyền để xem khái niệm, điều kiện bảo hộ, căn cứ pháp lý.",filing:"Chọn một bước trong quy trình để xem hồ sơ cần chuẩn bị và thủ tục tương ứng.",duration:"Thời hạn bảo hộ = quyền tồn tại bao lâu. Thời hiệu = còn bao lâu để xử phạt/khởi kiện khi bị xâm phạm — 2 khái niệm khác nhau.",cases:"Các vụ việc có thật, đã có kết quả công bố, để hiểu luật được áp dụng ra sao trên thực tế."};
+  const titles={home:"Bản đồ tổng quan Luật Sở hữu trí tuệ",theory:"Bạn đang tra cứu đối tượng nào?",summary:"Tóm tắt nội dung Luật SHTT",filing:"Hồ sơ của bạn đang ở bước nào?",duration:"Bạn muốn tra thời hạn hay thời hiệu?",cases:"Thực tiễn áp dụng: các vụ tranh chấp đã xảy ra"};
+  const subs={home:"Bấm vào 1 nhóm trong sơ đồ để xem lý thuyết, hoặc 1 bước trong quy trình để xem hồ sơ/thủ tục. Gõ từ khóa vào ô tìm để tra nhanh toàn bộ nội dung.",theory:"Chọn một nhóm quyền để xem khái niệm, điều kiện bảo hộ, căn cứ pháp lý.",summary:"Bảng tra cứu nhanh dạng Nội dung — Điều luật — Tóm tắt, theo từng phần của LSHTT.",filing:"Chọn một bước trong quy trình để xem hồ sơ cần chuẩn bị và thủ tục tương ứng.",duration:"Thời hạn bảo hộ = quyền tồn tại bao lâu. Thời hiệu = còn bao lâu để xử phạt/khởi kiện khi bị xâm phạm — 2 khái niệm khác nhau.",cases:"Các vụ việc có thật, đã có kết quả công bố, để hiểu luật được áp dụng ra sao trên thực tế."};
   document.getElementById("heroTitle").textContent = titles[p]||titles.home;
   document.getElementById("heroSub").textContent = subs[p]||subs.home;
   renderAll();
@@ -1165,6 +1248,9 @@ function renderAll(){
   }else if(page==="theory"){
     document.getElementById("journey").hidden=true;
     renderBranches();
+  }else if(page==="summary"){
+    document.getElementById("journey").hidden=true;
+    renderSummary();
   }else if(page==="duration"){
     document.getElementById("journey").hidden=true;
     renderDuration();
@@ -1222,6 +1308,7 @@ function resetFilters(){
 }
 document.getElementById("tabHome").addEventListener("click",()=>{ resetFilters(); goPage("home"); });
 document.getElementById("tabTheory").addEventListener("click",()=>{ resetFilters(); goPage("theory"); });
+document.getElementById("tabSummary").addEventListener("click",()=>{ resetFilters(); goPage("summary"); });
 document.getElementById("tabFiling").addEventListener("click",()=>{ resetFilters(); goPage("filing"); });
 document.getElementById("tabDuration").addEventListener("click",()=>{ resetFilters(); goPage("duration"); });
 document.getElementById("tabCases").addEventListener("click",()=>{ resetFilters(); goPage("cases"); });
