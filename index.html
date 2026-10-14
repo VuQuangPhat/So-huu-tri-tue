@@ -17,6 +17,7 @@
   --ok:#256f3f; --ok-soft:#dff0e5; --warn:#8a5a0b; --warn-soft:#f8ecd0; --bad:#a23a2b; --bad-soft:#f6dfda;
   --mark:#ffe58a; --shadow:0 1px 2px rgba(16,32,30,.06),0 8px 24px rgba(16,32,30,.07);
   --lg1:#1d6b45; --lg2:#2f9a60; --ln1:#0f2f4a; --ln2:#14456b; --lgold:#c89b3c;
+  --mmI:#3355c9; --mmII:#d9731f; --mmIII:#1f9e6e; --mmIV:#7a4fc0;
   --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --f-display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -26,12 +27,14 @@
   --line:#2a3a37; --line-strong:#43574f; --accent:#6cc3dc; --accent-ink:#06222b; --accent-soft:#17323a;
   --ok:#74d196; --ok-soft:#173424; --warn:#e9be68; --warn-soft:#3a2d12; --bad:#f09a8b; --bad-soft:#3d1f1a;
   --lg1:#4fbf80; --lg2:#7fd9a6; --ln1:#6cc3dc; --ln2:#4aa3d6; --lgold:#d9ae52;
+  --mmI:#7d97f4; --mmII:#f0a158; --mmIII:#5ad1a0; --mmIV:#b495ef;
   --mark:#6b5a12; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0e1716; --surface:#16211f; --surface-2:#1d2b28; --ink:#e6efed; --muted:#a2b4af; --faint:#7d908b;
   --line:#2a3a37; --line-strong:#43574f; --accent:#6cc3dc; --accent-ink:#06222b; --accent-soft:#17323a;
   --ok:#74d196; --ok-soft:#173424; --warn:#e9be68; --warn-soft:#3a2d12; --bad:#f09a8b; --bad-soft:#3d1f1a;
   --lg1:#4fbf80; --lg2:#7fd9a6; --ln1:#6cc3dc; --ln2:#4aa3d6; --lgold:#d9ae52;
+  --mmI:#7d97f4; --mmII:#f0a158; --mmIII:#5ad1a0; --mmIV:#b495ef;
   --mark:#6b5a12; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35); color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -52,8 +55,8 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .brand{display:flex;align-items:center;gap:12px;font-family:var(--f-display);letter-spacing:-.01em}
 .brand b{display:block;font-size:18px;line-height:1.2}
 .brand small{display:block;font:600 10.5px var(--f-body);letter-spacing:.22em;color:var(--lg1);margin-top:2px}
-.seg{display:inline-flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:2px}
-.seg button{border:0;background:transparent;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted)}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--surface-2);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:7px 12px;border-radius:8px;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap}
 .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(16,32,30,.12)}
 
 .stats{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr);gap:14px;margin-top:4px}
@@ -174,6 +177,45 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 /* ---- tabs (Trang chủ / Lý thuyết / Hồ sơ) ---- */
 .tabs button{font-weight:500}
 
+/* ---- bảng AI (trang chủ) ---- */
+.ai-card{margin-top:18px;border:1.5px solid var(--accent);border-radius:16px;padding:18px 20px;background:var(--surface);box-shadow:var(--shadow)}
+.ai-card>.ai-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.ai-card h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.ai-card .ai-tag{font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 10px}
+.ai-card>p.lede{margin:2px 0 14px;color:var(--muted);font-size:13.5px;max-width:74ch}
+.ai-table{width:100%;border-collapse:collapse;font-size:13px}
+.ai-table th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 10px 8px;border-bottom:1px solid var(--line-strong)}
+.ai-table td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+.ai-table tr.grp td{background:var(--surface-2);font-weight:700;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);padding:7px 10px}
+.ai-table td.k{font-weight:600;white-space:nowrap;width:1%}
+.ai-table td.cspl{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);white-space:nowrap;width:1%}
+.ai-table td.no{color:var(--bad)}
+.ai-table td.yes{color:var(--ok)}
+@media (max-width:700px){.ai-table,.ai-table tbody,.ai-table tr,.ai-table td{display:block;width:auto!important;max-width:none}.ai-table thead{display:none}.ai-table tr{border-bottom:1px solid var(--line);padding:10px 0}.ai-table tr.grp{padding:6px 10px}.ai-table td{border-bottom:0;padding:3px 10px}.ai-table td.k{white-space:normal;font-weight:700}.ai-table td.cspl{color:var(--accent);font-size:11px}.ai-table td.cspl::before{content:"CSPL: "}}
+
+/* ---- trang Thời hạn · Thời hiệu ---- */
+.dur-card{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:var(--surface);box-shadow:var(--shadow)}
+.dur-card h2{margin:0 0 4px;font-family:var(--f-display);font-weight:700;font-size:18px;letter-spacing:-.01em}
+.dur-card p.lede{margin:0 0 14px;color:var(--muted);font-size:13.5px;max-width:74ch}
+
+/* ---- trang Tranh chấp thực tế ---- */
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:18px}
+.case-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.case-card .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.case-card h3{margin:0;font-family:var(--f-display);font-size:16px;line-height:1.3}
+.case-card .yr{flex:none;font:600 11px var(--f-mono);color:var(--muted);background:var(--surface-2);border-radius:999px;padding:2px 9px}
+.case-card .parties{font-size:12.5px;color:var(--muted);line-height:1.5}
+.case-card .parties b{color:var(--ink)}
+.case-card .sum{font-size:13.5px;line-height:1.55;margin:2px 0}
+.case-card .outcome{font-size:13px;line-height:1.5;background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:8px 11px}
+.case-card .lesson{font-size:13px;line-height:1.5;background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:8px 11px}
+.case-card .lesson b,.case-card .outcome b{color:inherit}
+.case-card .meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.case-card .cspl-box{font-size:12.5px;line-height:1.5;background:var(--surface-2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-family:var(--f-mono)}
+.case-card .cspl-box b{color:var(--muted);font-family:var(--f-body)}
+.case-card .meta span{font-size:11px;background:var(--surface-2);color:var(--muted);border-radius:999px;padding:2px 9px}
+.case-card .src{font-size:11px;color:var(--faint);margin-top:2px}
+
 /* ---- sơ đồ tư duy (trang chủ) ---- */
 .mm-wrap{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:18px}
 .mm-root{background:var(--ink);color:var(--bg);border-radius:14px;padding:14px 22px;text-align:center;font-family:var(--f-display)}
@@ -186,10 +228,10 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .mm-trunk-head{border-radius:12px;padding:10px 12px;text-align:center;border:1.5px solid var(--line-strong);background:var(--surface)}
 .mm-trunk-head b{display:block;font-family:var(--f-display);font-size:14.5px;line-height:1.25}
 .mm-trunk-head small{display:block;margin-top:3px;color:var(--muted);font-size:11.5px;line-height:1.35}
-.mm-tg .mm-trunk-head{border-color:var(--lg1);box-shadow:inset 3px 0 0 var(--lg1)}
-.mm-cn .mm-trunk-head{border-color:var(--ln2);box-shadow:inset 3px 0 0 var(--ln2)}
-.mm-gt .mm-trunk-head{border-color:var(--lgold);box-shadow:inset 3px 0 0 var(--lgold)}
-.mm-bv .mm-trunk-head{border-color:var(--bad);box-shadow:inset 3px 0 0 var(--bad)}
+.mm-tg .mm-trunk-head{border-color:var(--mmI);box-shadow:inset 3px 0 0 var(--mmI)}
+.mm-cn .mm-trunk-head{border-color:var(--mmII);box-shadow:inset 3px 0 0 var(--mmII)}
+.mm-gt .mm-trunk-head{border-color:var(--mmIII);box-shadow:inset 3px 0 0 var(--mmIII)}
+.mm-bv .mm-trunk-head{border-color:var(--mmIV);box-shadow:inset 3px 0 0 var(--mmIV)}
 .mm-leaves{list-style:none;margin:10px 0 0;padding:0 0 0 14px;display:grid;gap:8px;position:relative}
 .mm-leaves::before{content:"";position:absolute;left:0;top:4px;bottom:16px;border-left:2px solid var(--line)}
 .mm-leaf{position:relative}
@@ -203,6 +245,37 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 @media (max-width:860px){.mm-trunks{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.mm-trunks{grid-template-columns:1fr}.mm-trunks::before,.mm-trunk::before{display:none}}
 
+/* ---- sơ đồ tư duy tỏa tròn 4 nhánh (desktop) ---- */
+.mm-radial{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:140px 8%;padding:86px 2% 40px;min-height:560px}
+.mm-lines{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:visible}
+.mm-rroot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;background:var(--ink);color:var(--bg);border-radius:16px;padding:16px 22px;text-align:center;font-family:var(--f-display);box-shadow:var(--shadow)}
+.mm-rroot b{display:block;font-size:16px;line-height:1.2}
+.mm-rroot small{display:block;margin-top:4px;opacity:.75;font-size:11.5px}
+.mm-quad{position:relative;z-index:2;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mm-quad-nw{grid-column:1;grid-row:1;align-items:flex-end;text-align:right}
+.mm-quad-ne{grid-column:2;grid-row:1;align-items:flex-start;text-align:left}
+.mm-quad-sw{grid-column:1;grid-row:2;align-items:flex-end;text-align:right}
+.mm-quad-se{grid-column:2;grid-row:2;align-items:flex-start;text-align:left}
+.mm-quad-nw,.mm-quad-sw{justify-content:flex-start}
+.mm-quad-ne,.mm-quad-se{justify-content:flex-start}
+.mm-quad-nw{order:0} .mm-quad-sw{order:0}
+.mm-thead{display:inline-block;max-width:280px;border-radius:12px;padding:10px 14px;background:var(--surface);border:1.5px solid var(--line-strong)}
+.mm-quad-nw .mm-thead{box-shadow:inset -3px 0 0 var(--mmIV);border-color:var(--mmIV)}
+.mm-quad-ne .mm-thead{box-shadow:inset 3px 0 0 var(--mmI);border-color:var(--mmI)}
+.mm-quad-sw .mm-thead{box-shadow:inset -3px 0 0 var(--mmIII);border-color:var(--mmIII)}
+.mm-quad-se .mm-thead{box-shadow:inset 3px 0 0 var(--mmII);border-color:var(--mmII)}
+.mm-thead b{display:block;font-family:var(--f-display);font-size:14.5px;line-height:1.25}
+.mm-thead small{display:block;margin-top:3px;color:var(--muted);font-size:11.5px;line-height:1.35}
+.mm-tleaves{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.mm-quad-nw .mm-tleaves,.mm-quad-sw .mm-tleaves{align-items:flex-end}
+.mm-quad-ne .mm-tleaves,.mm-quad-se .mm-tleaves{align-items:flex-start}
+.mm-tleaf{display:inline-block;max-width:270px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 11px}
+.mm-tleaf b{display:block;font-size:12.5px;font-weight:600;line-height:1.3}
+.mm-tleaf small{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.35}
+.mm-tleaf .mm-leaf-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.mm-quad-nw .mm-tleaf .mm-leaf-links,.mm-quad-sw .mm-tleaf .mm-leaf-links{justify-content:flex-end}
+@media (max-width:1180px){.mm-radial{grid-template-columns:1fr 1fr;gap:28px 4%}.mm-thead,.mm-tleaf{max-width:230px}}
+
 /* ---- xem trước quy trình đăng ký (trang chủ) ---- */
 .hp-track{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:14px}
 .hp-stage{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
@@ -212,6 +285,21 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .hp-stage small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
 @media (max-width:860px){.hp-track{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:480px){.hp-track{grid-template-columns:1fr 1fr}}
+
+/* ---- sơ đồ tư duy tổng quan (kiểu mindmap toả nhánh, đặt sau quy trình đăng ký) ---- */
+.mmo-scroll{overflow-x:auto;margin-top:14px;padding-bottom:4px}
+.mindmap-overview{position:relative;width:100%;min-width:900px;aspect-ratio:1000/660;max-width:1120px;margin:0 auto}
+.mindmap-overview svg{position:absolute;inset:0;width:100%;height:100%}
+.mmo-node{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;z-index:2}
+.mmo-center{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 20px;font-family:var(--f-display);font-weight:700;font-size:16px}
+.mmo-branch{border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;color:#fff}
+.mmo-branch.mmo-tg{background:var(--lg1)} .mmo-branch.mmo-cn{background:var(--ln2)} .mmo-branch.mmo-gt{background:var(--lgold)} .mmo-branch.mmo-bv{background:var(--bad)}
+.mmo-leaf{border:0;background:var(--surface);border:1.5px solid var(--line-strong);border-radius:999px;padding:4px 11px;font-size:11.5px;font-weight:500;color:var(--ink);cursor:pointer}
+.mmo-leaf:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.mmo-leaf.mmo-left{transform:translate(-100%,-50%)}
+.mmo-leaf.mmo-right{transform:translate(0,-50%)}
+.mmo-leaf.mmo-bottom{transform:translate(-50%,0)}
+@media (max-width:860px){.mindmap-overview{min-width:760px}.mmo-leaf{font-size:10.5px}}
 .eli5{background:var(--accent-soft);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.55;color:var(--ink)}
 .eli5 b{color:var(--accent);display:block;margin-bottom:3px;font-size:12.5px;letter-spacing:.02em;text-transform:uppercase}
 .gloss-btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink);white-space:nowrap}
@@ -272,6 +360,8 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
       <button id="tabHome" role="tab" aria-pressed="true">🗺️ Trang chủ</button>
       <button id="tabTheory" role="tab" aria-pressed="false">📘 Lý thuyết</button>
       <button id="tabFiling" role="tab" aria-pressed="false">📝 Hồ sơ · Thủ tục</button>
+      <button id="tabDuration" role="tab" aria-pressed="false">⏳ Thời hạn · Thời hiệu</button>
+      <button id="tabCases" role="tab" aria-pressed="false">⚖️ Tranh chấp thực tế</button>
     </nav>
   </header>
 
@@ -304,7 +394,7 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
   <main id="view" aria-live="polite"></main>
 
   <footer class="foot">
-    <span class="sig">Website được xây dựng và biên soạn bởi <b>Vũ Quang Phát</b> · AQUA LEGAL · Cập nhật LSHTT 2005 sđ 2009,2019,2022,2025 (Luật số 07/2022/QH15, 131/2025/QH15 — hiệu lực 01/4/2026) &amp; NĐ 17/2023, 65/2023, 79/2023, 341/2025/NĐ-CP · © 2026</span>
+    <span class="sig">Website được xây dựng và biên soạn bởi <b>Vũ Quang Phát</b> · AQUA LEGAL · Cập nhật LSHTT 2005 sđ 2009,2019,2022,2025 (Luật số 07/2022/QH15, 131/2025/QH15 — hiệu lực 01/4/2026) &amp; NĐ 17/2023, 65/2023, 79/2023, 341/2025, 134/2026/NĐ-CP · © 2026</span>
     <span class="note">Tóm tắt chỉ để định hướng. Đối chiếu văn bản gốc trước khi áp dụng.</span>
   </footer>
 </div>
@@ -343,6 +433,67 @@ const STAGES=[
  {id:"capvb",label:"Cấp văn bằng bảo hộ",desc:"GCN / Bằng độc quyền"},
  {id:"sauvb",label:"Sau cấp văn bằng",desc:"Gia hạn, chấm dứt, hủy bỏ"},
  {id:"tuxaclap",label:"Tự xác lập (không đăng ký)",desc:"Tên thương mại, bí mật kinh doanh",extra:true}
+];
+
+/* Thời hiệu xử lý vi phạm / khởi kiện — KHÁC với "thời hạn bảo hộ" (bvq-ss):
+   thời hạn bảo hộ = quyền tồn tại bao lâu; thời hiệu = còn bao lâu để xử phạt/khởi kiện kể từ khi phát hiện/chấm dứt hành vi xâm phạm. */
+const LIMITATION_PERIODS=[
+ {grp:"Xử phạt vi phạm hành chính"},
+ {k:"Thời hiệu xử phạt VPHC về SHTT",v:"2 năm",note:"Tính từ thời điểm chấm dứt hành vi (hành vi đã kết thúc) hoặc từ thời điểm phát hiện hành vi (hành vi đang tiếp diễn)",cspl:"Đ.6.1.a Luật XLVPHC 2012 (sđ,bs 2020); Đ.211 LSHTT ⚑"},
+ {grp:"Khởi kiện dân sự"},
+ {k:"Thời hiệu khởi kiện yêu cầu bồi thường thiệt hại do xâm phạm quyền SHTT",v:"3 năm",note:"Tính từ ngày người có quyền yêu cầu biết hoặc phải biết quyền, lợi ích hợp pháp của mình bị xâm phạm. LSHTT không quy định thời hiệu riêng nên áp dụng theo BLDS",cspl:"Đ.429 BLDS 2015"},
+ {k:"Yêu cầu buộc chấm dứt hành vi xâm phạm, xin lỗi cải chính",v:"Không áp dụng thời hiệu",note:"Yêu cầu bảo vệ quyền nhân thân, quyền sở hữu không bị giới hạn bởi thời hiệu khởi kiện",cspl:"Đ.155 BLDS 2015 ⚑"},
+ {grp:"Truy cứu trách nhiệm hình sự"},
+ {k:"Tội xâm phạm quyền tác giả, quyền liên quan (Đ.225 BLHS)",v:"5 – 10 năm",note:"Tùy khung hình phạt áp dụng: khung cơ bản (tội ít nghiêm trọng/nghiêm trọng) → 5 hoặc 10 năm kể từ ngày tội phạm được thực hiện",cspl:"Đ.27 BLHS 2015 (sđ,bs 2017)"},
+ {k:"Tội xâm phạm quyền sở hữu công nghiệp (Đ.226 BLHS)",v:"5 – 10 năm",note:"Tương tự — tùy mức độ nghiêm trọng của khung hình phạt bị truy cứu",cspl:"Đ.27 BLHS 2015 (sđ,bs 2017)"},
+ {grp:"Khiếu nại trong thủ tục SHCN"},
+ {k:"Khiếu nại quyết định/thông báo của Cục SHTT (lần đầu)",v:"90 ngày",note:"Kể từ ngày nhận được hoặc biết được quyết định/thông báo bị khiếu nại",cspl:"Luật Khiếu nại 2011"},
+ {k:"Phản đối đơn kiểu dáng công nghiệp",v:"3 tháng",note:"Kể từ ngày công bố đơn — quy định mới",cspl:"Đ.112a.1.b LSHTT (sđ Luật 131/2025/QH15)"}
+];
+
+const CASES=[
+ {id:"haohao",title:"Mì Hảo Hảo (Acecook) — Mì Hảo Hạng (Asia Foods)",year:"2015",obj:"Nhãn hiệu",method:"Hành chính",
+  parties:"Acecook Việt Nam (chủ nhãn hiệu “Hảo Hảo”, GCN số 62360) kiện/khiếu nại đối với Công ty CP Thực phẩm Á Châu (Asia Foods) về bao bì mì “Hảo Hạng”.",
+  summary:"Đầu năm 2015, Asia Foods tung ra mì “Hảo Hạng” có cách trình bày bao bì (tông đỏ, hình tô mì, bố cục chữ) bị cho là tương tự gây nhầm lẫn với bao bì “Hảo Hảo” đã nổi tiếng trên thị trường. Acecook khuyến cáo rồi đưa vụ việc ra Cục Sở hữu trí tuệ.",
+  outcome:"Ngày 13/2/2015, Cục SHTT ra Công văn 1320/SHTT-TTKN kết luận bao bì “Hảo Hạng” có dấu hiệu gây nhầm lẫn với nhãn hiệu “Hảo Hảo” đã được bảo hộ. Asia Foods sau đó ngừng sản xuất mẫu bao bì bị phản ánh.",
+  lesson:"Yếu tố “gây nhầm lẫn” được xét trên tổng thể cách trình bày (tổng thể bao bì/trade dress), không chỉ riêng tên gọi — doanh nghiệp cần rà soát cả màu sắc, bố cục, hình ảnh khi thiết kế bao bì mới trong cùng ngành hàng.",
+  cspl:"Đ.129.1.a LSHTT (hành vi xâm phạm quyền nhãn hiệu — dấu hiệu tương tự gây nhầm lẫn); Đ.72,74 LSHTT (điều kiện bảo hộ, khả năng phân biệt của nhãn hiệu) ⚑ xử lý qua công văn kết luận của Cục SHTT, chưa phải quyết định xử phạt hành chính chính thức",
+  src:"Cục SHTT (CV 1320/SHTT-TTKN 13/2/2015); VietTimes, BrandsVietnam"},
+ {id:"biasaigon",title:"Nhãn hiệu “Bia Sài Gòn” (SABECO) — “Bia Saigon Vietnam”",year:"2019–2023",obj:"Nhãn hiệu nổi tiếng",method:"Hình sự",
+  parties:"SABECO (chủ sở hữu nhãn hiệu “Bia Sài Gòn”) — bị cáo: ông Lê Đình Trung (cựu nhân sự SABECO) và Công ty CP Tập đoàn Bia Sài Gòn Việt Nam.",
+  summary:"Năm 2019–2020, bị cáo lập công ty, đăng ký và sử dụng nhãn hiệu/kiểu dáng “Bia Saigon Vietnam” cùng hình rồng trên lon bia, bị cho là xâm phạm nhãn hiệu SABECO. Tháng 6/2020, cơ quan chức năng tạm giữ hơn 4.700 thùng bia thành phẩm cùng vỏ lon, vỏ thùng.",
+  outcome:"Ngày 16/3/2023, TAND tỉnh Bà Rịa – Vũng Tàu tuyên: phạt ông Lê Đình Trung 700 triệu đồng, phạt pháp nhân 3 tỷ đồng (tổng 3,7 tỷ đồng) — đây là một trong những vụ pháp nhân đầu tiên bị xử lý hình sự về SHTT tại Việt Nam; đồng thời tịch thu, tiêu hủy toàn bộ tang vật.",
+  lesson:"Tranh cãi tại tòa về tiêu chí công nhận “nhãn hiệu nổi tiếng” (Cục SHTT không có danh sách chính thức, phải chứng minh theo từng vụ việc) cho thấy đây là nhãn khó áp dụng — cần chuẩn bị đầy đủ chứng cứ thị phần, doanh số, mức độ nhận biết nếu muốn viện dẫn.",
+  cspl:"Đ.226 BLHS 2015 (sđ,bs 2017) — tội xâm phạm quyền sở hữu công nghiệp; Đ.129.1, Đ.75 LSHTT (tiêu chí xác định nhãn hiệu nổi tiếng, hành vi xâm phạm)",
+  src:"TAND tỉnh Bà Rịa – Vũng Tàu (16/3/2023); Tuổi Trẻ, Tạp chí Công Thương"},
+ {id:"giacmotrua",title:"“Giấc mơ trưa” — Giáng Son, Nguyễn Vĩnh Tiến kiện BH Media",year:"2021–2026",obj:"Quyền tác giả / quyền liên quan",method:"Dân sự",
+  parties:"Nhạc sĩ Giáng Son và Nguyễn Vĩnh Tiến kiện Công ty BH Media.",
+  summary:"BH Media đã đăng ký bản ghi ca khúc “Giấc mơ trưa” (ca sĩ Khánh Linh thể hiện) lên hệ thống Content ID của YouTube dưới tên một nghệ sĩ hòa âm, khiến hệ thống tự động nhận diện và “đánh gậy” bản quyền ngay trên video do chính nhạc sĩ đăng tải. Tranh chấp bắt đầu từ 10/2021.",
+  outcome:"Ngày 26/6/2026, TAND TP. Hà Nội tuyên buộc BH Media chấm dứt hành vi xâm phạm, gỡ yêu cầu sở hữu trên Content ID, công nhận Giáng Son là chủ sở hữu bản ghi, và buộc BH Media xin lỗi công khai trên 3 báo (Tuổi Trẻ, Pháp Luật Việt Nam, Thanh Niên). Giáng Son tự nguyện rút yêu cầu bồi thường 1 tỷ đồng tổn thất tinh thần.",
+  lesson:"Vụ việc cho thấy ranh giới dễ nhầm giữa quyền tác giả (nhạc sĩ) và quyền liên quan (nhà sản xuất bản ghi, người biểu diễn) trên các nền tảng số — đơn vị quản lý bản quyền trung gian khai báo sai chủ thể trên Content ID có thể bị coi là xâm phạm, dù không trực tiếp khai thác thương mại.",
+  cspl:"Đ.20 LSHTT (quyền tài sản của tác giả); Đ.29 LSHTT (quyền của nhà sản xuất bản ghi âm, ghi hình); Đ.198,202 LSHTT (quyền tự bảo vệ, các biện pháp dân sự: buộc chấm dứt hành vi, xin lỗi cải chính công khai)",
+  src:"TAND TP. Hà Nội (26/6/2026); VietNamNet, VOV, VietnamPlus"},
+ {id:"duyloi",title:"Võng xếp Duy Lợi — bằng sáng chế khung xếp tại Mỹ bị hủy",year:"2000–2005",obj:"Kiểu dáng công nghiệp / sáng chế (nước ngoài)",method:"Hành chính (USPTO)",
+  parties:"DNTN Duy Lợi (ông Lâm Tấn Lợi) — đối thủ: thương nhân Đài Loan Chung Sen Wu.",
+  summary:"Duy Lợi đã được bảo hộ kiểu dáng khung võng xếp tại Việt Nam từ tháng 3/2000. Tháng 8/2001, ông Chung Sen Wu nộp đơn và được cấp bằng sáng chế tương tự tại Mỹ. Duy Lợi nộp đơn phản đối lên USPTO từ tháng 4/2004.",
+  outcome:"Tháng 9/2005, USPTO ra quyết định hủy bỏ hiệu lực bằng sáng chế đã cấp cho Chung Sen Wu, dựa trên bằng chứng Duy Lợi đã công bố/sử dụng kiểu dáng này trước đó tại Việt Nam.",
+  lesson:"Bài học kinh điển về “đăng ký muộn, mất thị trường”: doanh nghiệp xuất khẩu cần đăng ký bảo hộ SHTT tại chính thị trường xuất khẩu càng sớm càng tốt, không chỉ ở Việt Nam — nếu không sẽ phải tốn nhiều năm, chi phí để đòi lại quyền.",
+  cspl:"35 U.S.C. § 102 (luật sáng chế Mỹ — điều kiện về tính mới, chứng cứ sử dụng/công bố trước — prior art); đối chiếu Đ.60 LSHTT (tính mới của sáng chế tại VN) ⚑ căn cứ nước ngoài, không phải luật Việt Nam",
+  src:"USPTO (9/2005); Tạp chí Công Thương"},
+ {id:"keodua",title:"“Kẹo dừa Bến Tre” bị đăng ký trước tại Trung Quốc",year:"1998–1999",obj:"Nhãn hiệu (nước ngoài)",method:"Hành chính (cơ quan nhãn hiệu Trung Quốc)",
+  parties:"Công ty Đông Á (bà Phạm Thị Tỏ) — đối thủ: Công ty Rừng Dừa (Trung Quốc, nguyên là đối tác phân phối).",
+  summary:"Tháng 8/1998, đối tác phân phối cũ tại Trung Quốc đăng ký nhãn hiệu “Kẹo dừa Bến Tre” mang tên mình rồi tự sản xuất, bán hàng giả danh nghĩa chính hãng.",
+  outcome:"Tháng 5/1999, cơ quan quản lý nhãn hiệu Trung Quốc công nhận quyền của Đông Á, xác định sản phẩm của Rừng Dừa là hàng giả; phía Rừng Dừa buộc phải đóng cửa nhà máy, ngừng sản xuất.",
+  lesson:"Rủi ro điển hình khi hợp tác với nhà phân phối nước ngoài mà chưa tự đứng tên đăng ký nhãn hiệu tại thị trường đó trước — nên đăng ký bảo hộ ở nước nhập khẩu trước khi mở rộng phân phối qua đối tác.",
+  cspl:"Luật Nhãn hiệu Trung Quốc 1982 (sđ) — nguyên tắc “nộp đơn trước” (first-to-file) và quy định xử lý hàng giả mạo nhãn hiệu ⚑ căn cứ nước ngoài; đối chiếu nguyên tắc tương tự tại Đ.90 LSHTT (nguyên tắc nộp đơn đầu tiên tại VN)",
+  src:"Tạp chí Công Thương (tổng hợp 2013)"},
+ {id:"vinamit",title:"Vinamit đòi lại thương hiệu “Đức Thành” tại Trung Quốc",year:"2007–2012",obj:"Nhãn hiệu (nước ngoài)",method:"Tố tụng dân sự (tòa án Trung Quốc)",
+  parties:"Vinamit — đối thủ: ông Xie Hong Yi (cựu khách hàng/nhà phân phối của Vinamit tại Trung Quốc).",
+  summary:"Vinamit chỉ đăng ký nhãn hiệu tiếng Việt, chưa đăng ký bản dịch tiếng Trung “Đức Thành”. Một nhà phân phối cũ đã nhanh tay đăng ký trước bằng tên cá nhân rồi sản xuất hàng tương tự; hệ thống siêu thị Trung Quốc từ chối nhận hàng Vinamit vì trùng nhãn hiệu đã đăng ký. Vinamit khởi kiện năm 2010.",
+  outcome:"Cuối năm 2012, tòa án Bắc Kinh tuyên Vinamit thắng kiện, xác định ông Xie Hong Yi đăng ký nhãn hiệu với dụng ý xấu (bad faith), vi phạm Điều 31 Luật Nhãn hiệu Trung Quốc.",
+  lesson:"Phải đăng ký đầy đủ các phiên bản tên gọi (tiếng Việt, tiếng bản địa, phiên âm, bản dịch) tại mọi thị trường xuất khẩu trọng điểm — không chỉ bản gốc tiếng Việt — để tránh bị đối tác/nhà phân phối “đi trước một bước”.",
+  cspl:"Điều 31 Luật Nhãn hiệu Trung Quốc (cấm đăng ký nhãn hiệu với dụng ý xấu — bad faith registration) ⚑ căn cứ nước ngoài; đối chiếu Đ.117.1.b, Đ.96.1.d LSHTT (từ chối/hủy bỏ hiệu lực văn bằng do đăng ký không trung thực tại VN)",
+  src:"Tòa án Bắc Kinh (cuối 2012); Tạp chí Công Thương"}
 ];
 
 /* Bảng thuật ngữ — giải thích các từ viết tắt/chuyên môn dùng trong toàn trang */
@@ -586,10 +737,10 @@ const ITEMS=[
  <p>Viện Khoa học sở hữu trí tuệ (VIPRI) là cơ quan giám định công lập chủ yếu hiện nay.</p>`},
 
 {id:"bvq-ss",group:"bvq",kind:"nc",title:"So sánh nhanh: Thời hạn bảo hộ các đối tượng",
- lede:"Bảng tổng hợp phục vụ ôn thi, tra cứu nhanh",
+ lede:"Bảng tổng hợp tra cứu nhanh",
  law:"Đ.27,34,93,93a,169 LSHTT",
  body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Bảng này giống như 1 "bảng giá" tra cứu nhanh — mỗi loại tài sản trí tuệ được bảo hộ trong bao lâu, để bạn không cần lục lại từng điều luật mỗi khi cần nhớ.</div><h4>Thời hạn bảo hộ</h4><table style="width:100%;border-collapse:collapse;font-size:13px"><tr><td style="padding:4px 6px 4px 0"><b>Quyền tác giả</b></td><td>Đời tác giả + 50 năm sau khi mất; riêng điện ảnh/nhiếp ảnh/MTƯD/khuyết danh: 75 năm từ công bố (100 năm từ định hình nếu chưa công bố trong 25 năm)</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Quyền liên quan</b></td><td>50 năm kể từ khi cuộc biểu diễn/bản ghi/buổi phát sóng được định hình hoặc thực hiện</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Sáng chế</b></td><td>20 năm kể từ ngày nộp đơn — không gia hạn</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Giải pháp hữu ích</b></td><td>10 năm kể từ ngày nộp đơn — không gia hạn</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Kiểu dáng công nghiệp</b></td><td>5 năm, gia hạn 2 lần × 5 năm (tối đa 15 năm)</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Nhãn hiệu</b></td><td>10 năm, gia hạn không giới hạn số lần × 10 năm</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Chỉ dẫn địa lý</b></td><td>Vô thời hạn kể từ ngày cấp</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Thiết kế bố trí</b></td><td>Chấm dứt sớm nhất trong: 10 năm từ ngày nộp đơn / 10 năm từ ngày khai thác thương mại lần đầu / 15 năm từ ngày tạo ra</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Giống cây trồng</b></td><td>25 năm (cây thân gỗ, nho) hoặc 20 năm (giống khác) kể từ ngày cấp Bằng</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Tên TM / Bí mật KD</b></td><td>Vô thời hạn — chấm dứt khi không còn sử dụng hoặc không còn đáp ứng điều kiện bảo mật</td></tr></table>
- <p class="note">📌 Bảng tổng hợp phục vụ ôn thi — luôn đối chiếu Đ.27,34,93,93a,169 LSHTT khi làm bài.</p>`},
+ <p class="note">📌 Bảng tổng hợp để tra cứu nhanh — luôn đối chiếu Đ.27,34,93,93a,169 LSHTT trước khi sử dụng chính thức.</p>`},
 
 /* ---------- CHUYỂN GIAO QUYỀN SHTT ---------- */
 {id:"cgq-nc",group:"cgq",kind:"nc",title:"Nghiên cứu: Chuyển giao quyền SHTT",
@@ -611,7 +762,7 @@ const ITEMS=[
  lede:"Paris, Berne, TRIPS, Madrid, PCT, UPOV — VN là thành viên",
  law:"Công ước Paris 1883; Berne 1886; Hiệp định TRIPS; Madrid; PCT; UPOV",
  body:`<div class="eli5"><b>💡 Hiểu đơn giản</b>Việt Nam đã ký kết nhiều "thỏa thuận quốc tế" về SHTT, nghĩa là quyền SHTT được bảo hộ tại Việt Nam cũng được các nước thành viên khác tôn trọng (và ngược lại) — giống như hộ chiếu Việt Nam được nhiều nước công nhận nhờ Việt Nam tham gia các hiệp ước quốc tế.</div><h4>Các điều ước chính Việt Nam là thành viên</h4><table style="width:100%;border-collapse:collapse;font-size:13px"><tr><td style="padding:4px 6px 4px 0"><b>Công ước Paris</b> (1883)</td><td>Bảo hộ sở hữu công nghiệp — nguyên tắc đối xử quốc gia, quyền ưu tiên. VN thành viên từ 1949 (kế thừa)</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Công ước Berne</b> (1886)</td><td>Bảo hộ tác phẩm văn học, nghệ thuật — bảo hộ tự động, không cần hình thức. VN gia nhập 26/10/2004</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Hiệp định TRIPS</b></td><td>Khía cạnh thương mại của quyền SHTT (phụ lục WTO) — chuẩn tối thiểu bảo hộ. VN gia nhập 11/1/2007 (gia nhập WTO)</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Thỏa ước &amp; Nghị định thư Madrid</b></td><td>Đăng ký quốc tế nhãn hiệu qua 1 đơn duy nhất. VN: Thỏa ước từ 1949, Nghị định thư từ 11/7/2006</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Hiệp ước PCT</b></td><td>Nộp 1 đơn sáng chế quốc tế, chỉ định nhiều quốc gia. VN tham gia từ 10/3/1993</td></tr><tr><td style="padding:4px 6px 4px 0"><b>Công ước UPOV</b></td><td>Bảo hộ giống cây trồng mới. VN gia nhập 24/12/2006</td></tr></table>
- <p class="note">📌 Ngày gia nhập theo công bố của WIPO/cơ quan nhà nước — nên đối chiếu nguồn chính thức (wipo.int) khi trích dẫn trong bài thi.</p>`},
+ <p class="note">📌 Ngày gia nhập theo công bố của WIPO/cơ quan nhà nước — nên đối chiếu nguồn chính thức (wipo.int) trước khi trích dẫn chính thức.</p>`},
 
 /* ---------- NGOẠI LỆ & GIỚI HẠN QUYỀN ---------- */
 {id:"qtg-ngoaile",group:"qtg",kind:"nc",title:"Ngoại lệ & giới hạn quyền tác giả",
@@ -737,37 +888,45 @@ function filteredItems(){
   return arr;
 }
 
-function renderHome(){
-  const view=document.getElementById("view");
-  if(query){ renderList(view); return; }
-  const trunkHtml=BIGGROUPS.map(bg=>{
-    const subs=GROUPS.filter(g=>g.big===bg.id);
-    const chips=subs.map(g=>{
-      const hasFiling=ITEMS.some(i=>i.group===g.id&&i.kind==="dk");
-      return `<li class="mm-leaf"><span class="mm-leaf-card">
-        <b>${esc(g.label)}</b><small>${esc(g.desc)}</small>
-        <span class="mm-leaf-links">
-          <button type="button" data-theory="${g.id}">📘 Lý thuyết</button>
-          ${hasFiling?`<button type="button" data-filing="${g.id}">📝 Hồ sơ</button>`:``}
-        </span>
-      </span></li>`;
-    }).join("");
-    return `<div class="mm-trunk mm-${bg.id}">
-      <div class="mm-trunk-head"><b>${esc(bg.label)}</b><small>${esc(bg.desc)}</small></div>
-      <ul class="mm-leaves">${chips}</ul>
-    </div>`;
-  }).join("");
-  const trackHtml=STAGES.filter(s=>!s.extra).map((s,idx)=>{
+function aiCardHtml(){
+  return `<div class="ai-card">
+    <div class="ai-head"><h2>🤖 Xác lập quyền tác giả đối với tác phẩm có hỗ trợ của AI</h2><span class="ai-tag">Chủ đề nóng · NĐ 134/2026/NĐ-CP</span></div>
+    <p class="lede">Nghị định 134/2026/NĐ-CP (bổ sung Điều 5a vào NĐ 17/2023/NĐ-CP, hiệu lực 29/4/2026) — văn bản đầu tiên trả lời trực diện câu hỏi "tác phẩm do AI tạo ra thì ai là tác giả?".</p>
+    <div class="eli5"><b>💡 Hiểu đơn giản</b>AI chỉ là công cụ — giống cây bút hay máy ảnh. Luật không công nhận AI là "tác giả". Quyền tác giả chỉ phát sinh cho CON NGƯỜI, và chỉ khi người đó thực sự "nhúng tay" đủ sâu vào kết quả (chọn, sửa, quyết định) chứ không phải chỉ gõ 1 câu lệnh rồi lấy nguyên kết quả AI trả về.</div>
+    <table class="ai-table">
+      <thead><tr><th>Điều kiện / Tình huống</th><th>Nội dung</th><th>CSPL</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="3">3 điều kiện để con người được công nhận là tác giả (phải đủ cả 3)</td></tr>
+        <tr><td class="k">(a) Đóng góp đáng kể, mang tính quyết định</td><td>Cung cấp dữ liệu đầu vào/tham số kỹ thuật nguyên gốc hoặc xây dựng tài liệu thiết kế (với phần mềm); thiết lập câu lệnh (prompt) điều khiển AI; đánh giá, lựa chọn, chỉnh sửa, can thiệp, diễn giải kết quả AI tạo ra; sắp xếp, tổ chức nội dung/hình thức thể hiện; quyết định ý đồ nghệ thuật, thẩm mỹ, kỹ năng chuyên môn và kết quả cuối cùng</td><td class="cspl">Đ.5a.1.a</td></tr>
+        <tr><td class="k">(b) Chịu trách nhiệm</td><td>Con người chịu trách nhiệm về nội dung và tính hợp pháp của sản phẩm tạo ra bằng AI</td><td class="cspl">Đ.5a.1.b</td></tr>
+        <tr><td class="k">(c) Không xâm phạm quyền của dữ liệu đầu vào</td><td>Việc dùng AI không được gây phương hại quyền tác giả/quyền liên quan đối với dữ liệu đã dùng để huấn luyện/làm đầu vào cho AI</td><td class="cspl">Đ.5a.1.c</td></tr>
+        <tr class="grp"><td colspan="3">Hệ quả pháp lý</td></tr>
+        <tr><td class="k yes">✔ Đủ 3 điều kiện trên + đủ điều kiện bảo hộ chung của LSHTT</td><td>Người sáng tạo được xác định là <b>TÁC GIẢ</b>; chủ sở hữu quyền xác định theo Chương III LSHTT (Đ.37-42) như bình thường</td><td class="cspl">Đ.5a.2,3,5</td></tr>
+        <tr><td class="k no">✘ Sản phẩm hoàn toàn do AI tạo ra, hoặc không đủ 3 điều kiện</td><td><b>KHÔNG phát sinh</b> quyền tác giả / quyền liên quan</td><td class="cspl">Đ.5a.9</td></tr>
+        <tr><td class="k no">✘ "Người biểu diễn" do AI tạo ra (ảo)</td><td>Quyền liên quan của người biểu diễn chỉ phát sinh cho cá nhân trực tiếp biểu diễn bằng hành vi nghệ thuật thật của mình</td><td class="cspl">Đ.5a.4</td></tr>
+        <tr class="grp"><td colspan="3">Nghĩa vụ khi có tranh chấp / yêu cầu bảo vệ quyền</td></tr>
+        <tr><td class="k">Chứng minh + kê khai trung thực</td><td>Người sáng tạo phải chứng minh việc sáng tạo của mình và kê khai trung thực việc có sử dụng AI khi cơ quan có thẩm quyền yêu cầu</td><td class="cspl">Đ.5a.7</td></tr>
+        <tr><td class="k">Tài liệu chứng minh gợi ý</td><td>Dữ liệu đầu vào/tham số kỹ thuật/bản thảo, bản trung gian, chỉnh sửa; lịch sử câu lệnh (prompt) &amp; dữ liệu tương tác; tài liệu mô tả quá trình sáng tạo thể hiện sự kiểm soát của con người</td><td class="cspl">Đ.5a.8</td></tr>
+        <tr><td class="k">Gắn nhãn/đánh dấu kỹ thuật</td><td>Đối tượng tạo ra có dùng AI phải gắn nhãn hiển thị, đánh dấu kỹ thuật theo quy định của pháp luật về AI</td><td class="cspl">Đ.5a.6</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:12px">📌 Áp dụng tương tự cho quyền liên quan (cuộc biểu diễn, bản ghi âm/ghi hình, chương trình phát sóng) được tạo ra có dùng AI. Đây là quy định rất mới (29/4/2026) — khuyến nghị đối chiếu văn bản gốc và theo dõi án lệ/hướng dẫn áp dụng trước khi tư vấn chính thức cho khách hàng. ⚑</p>
+  </div>`;
+}
+function trackHtml(){
+  return STAGES.filter(s=>!s.extra).map((s,idx)=>{
     const cnt=ITEMS.filter(i=>i.kind==="dk"&&i.stage===s.id).length;
     return `<button type="button" class="hp-stage" data-stage="${s.id}"><span>${idx+1}</span><b>${esc(s.label)}</b><small>${cnt} mục</small></button>`;
   }).join("");
-  view.innerHTML=`
-    <div class="mm-wrap">
-      <div class="mm-root"><b>Luật Sở hữu trí tuệ</b><small>3 nhóm lớn + bảo vệ quyền</small></div>
-      <div class="mm-trunks">${trunkHtml}</div>
-    </div>
-    <div class="sect-label">Quy trình đăng ký — bấm để xem chi tiết ở tab Hồ sơ · Thủ tục</div>
-    <div class="hp-track">${trackHtml}</div>`;
+}
+function leafLinksHtml(g){
+  const hasFiling=ITEMS.some(i=>i.group===g.id&&i.kind==="dk");
+  return `<span class="mm-leaf-links">
+    <button type="button" data-theory="${g.id}">📘 Lý thuyết</button>
+    ${hasFiling?`<button type="button" data-filing="${g.id}">📝 Hồ sơ</button>`:``}
+  </span>`;
+}
+function wireHomeClicks(view){
   view.querySelectorAll("[data-theory]").forEach(b=>b.addEventListener("click",()=>{
     curGroup=b.dataset.theory; curBig=null; curStage=null; goPage("theory");
   }));
@@ -779,13 +938,186 @@ function renderHome(){
   }));
 }
 
+function renderDuration(){
+  const host=document.getElementById("view");
+  const durTable=`<table class="ai-table"><thead><tr><th>Đối tượng</th><th>Thời hạn bảo hộ</th></tr></thead><tbody>
+    <tr><td class="k">Quyền tác giả</td><td>Đời tác giả + 50 năm sau khi mất; riêng điện ảnh/nhiếp ảnh/MTƯD/khuyết danh: 75 năm từ công bố (100 năm từ định hình nếu chưa công bố trong 25 năm)</td></tr>
+    <tr><td class="k">Quyền liên quan</td><td>50 năm kể từ khi cuộc biểu diễn/bản ghi/buổi phát sóng được định hình hoặc thực hiện</td></tr>
+    <tr><td class="k">Sáng chế</td><td>20 năm kể từ ngày nộp đơn — không gia hạn</td></tr>
+    <tr><td class="k">Giải pháp hữu ích</td><td>10 năm kể từ ngày nộp đơn — không gia hạn</td></tr>
+    <tr><td class="k">Kiểu dáng công nghiệp</td><td>5 năm, gia hạn 2 lần × 5 năm (tối đa 15 năm)</td></tr>
+    <tr><td class="k">Nhãn hiệu</td><td>10 năm, gia hạn không giới hạn số lần × 10 năm</td></tr>
+    <tr><td class="k">Chỉ dẫn địa lý</td><td>Vô thời hạn kể từ ngày cấp</td></tr>
+    <tr><td class="k">Thiết kế bố trí</td><td>Chấm dứt sớm nhất trong: 10 năm từ ngày nộp đơn / 10 năm từ ngày khai thác thương mại lần đầu / 15 năm từ ngày tạo ra</td></tr>
+    <tr><td class="k">Giống cây trồng</td><td>25 năm (cây thân gỗ, nho) hoặc 20 năm (giống khác) kể từ ngày cấp Bằng</td></tr>
+    <tr><td class="k">Tên TM / Bí mật KD</td><td>Vô thời hạn — chấm dứt khi không còn sử dụng hoặc không còn đáp ứng điều kiện bảo mật</td></tr>
+  </tbody></table>`;
+  const limRows=LIMITATION_PERIODS.map(r=>{
+    if(r.grp) return `<tr class="grp"><td colspan="3">${esc(r.grp)}</td></tr>`;
+    return `<tr><td class="k">${esc(r.k)}</td><td><b>${esc(r.v)}</b><br><span style="color:var(--muted);font-size:12.5px">${esc(r.note)}</span></td><td class="cspl">${esc(r.cspl)}</td></tr>`;
+  }).join("");
+  host.innerHTML=`
+    <div class="dur-card">
+      <div class="eli5"><b>💡 Hiểu đơn giản</b>Hai khái niệm dễ nhầm: <b>"Thời hạn bảo hộ"</b> là quyền của bạn tồn tại/có hiệu lực trong bao lâu (giống hạn dùng của 1 "tài sản"). <b>"Thời hiệu"</b> là bạn còn bao nhiêu thời gian để đi kiện/khiếu nại/yêu cầu xử phạt kể từ khi phát hiện bị xâm phạm — hết thời hiệu thì dù quyền vẫn còn, bạn cũng mất quyền khởi kiện/xử phạt theo đường đó.</div>
+      <h2>⏳ Thời hạn bảo hộ theo đối tượng</h2>
+      <p class="lede">Tra cứu nhanh — luôn đối chiếu Đ.27,34,93,93a,169 LSHTT trước khi sử dụng chính thức.</p>
+      ${durTable}
+    </div>
+    <div class="dur-card">
+      <h2>⏱ Thời hiệu xử lý vi phạm &amp; khởi kiện</h2>
+      <p class="lede">Thời hiệu để yêu cầu cơ quan có thẩm quyền xử phạt, hoặc khởi kiện/tố giác hành vi xâm phạm quyền SHTT — tính từ khi phát hiện/chấm dứt hành vi, không phải từ khi quyền được xác lập.</p>
+      <table class="ai-table"><thead><tr><th>Loại thời hiệu</th><th>Thời hạn &amp; cách tính</th><th>CSPL</th></tr></thead><tbody>${limRows}</tbody></table>
+      <p class="note" style="margin-top:12px">📌 ⚑ Mục truy cứu TNHS (Đ.27 BLHS) tùy khung hình phạt cụ thể bị áp dụng cho từng vụ việc — nên đối chiếu khung hình phạt thực tế trước khi tư vấn chính thức.</p>
+    </div>`;
+}
+function caseCardHtml(c){
+  return `<div class="case-card">
+    <div class="ch"><h3>${esc(c.title)}</h3><span class="yr">${esc(c.year)}</span></div>
+    <div class="parties"><b>Các bên:</b> ${esc(c.parties)}</div>
+    <p class="sum">${esc(c.summary)}</p>
+    <div class="outcome"><b>Kết quả:</b> ${esc(c.outcome)}</div>
+    <div class="lesson"><b>Bài học:</b> ${esc(c.lesson)}</div>
+    <div class="cspl-box"><b>CSPL:</b> ${esc(c.cspl)}</div>
+    <div class="meta"><span>${esc(c.obj)}</span><span>${esc(c.method)}</span></div>
+    <div class="src">Nguồn: ${esc(c.src)}</div>
+  </div>`;
+}
+function renderCases(){
+  const host=document.getElementById("view");
+  host.innerHTML=`
+    <div class="eli5" style="margin-bottom:4px"><b>💡 Hiểu đơn giản</b>Đây là các vụ tranh chấp SHTT có thật tại Việt Nam (và vài vụ doanh nghiệp Việt ở nước ngoài), đã được báo chí/cơ quan nhà nước công bố kết quả — dùng để minh họa cách luật được áp dụng thực tế, không phải tình huống giả định.</div>
+    <div class="cases-grid">${CASES.map(caseCardHtml).join("")}</div>
+    <p class="note" style="margin-top:14px">📌 Thông tin tổng hợp từ nguồn báo chí/quyết định công khai, có thể chưa đầy đủ mọi diễn biến tố tụng — nên tra cứu bản án/quyết định gốc nếu cần trích dẫn chính thức. ⚑</p>`;
+}
+
+const RADIAL_MIN_WIDTH=900;
+
+function renderHome(){
+  const view=document.getElementById("view");
+  if(query){ renderList(view); return; }
+  if(window.innerWidth>=RADIAL_MIN_WIDTH){ renderHomeRadial(view); }
+  else { renderHomeStack(view); }
+}
+
+/* ---- dạng cây phân cấp (mobile / màn hẹp) ---- */
+function renderHomeStack(view){
+  const trunk=BIGGROUPS.map(bg=>{
+    const subs=GROUPS.filter(g=>g.big===bg.id);
+    const chips=subs.map(g=>`<li class="mm-leaf"><span class="mm-leaf-card">
+        <b>${esc(g.label)}</b><small>${esc(g.desc)}</small>
+        ${leafLinksHtml(g)}
+      </span></li>`).join("");
+    return `<div class="mm-trunk mm-${bg.id}">
+      <div class="mm-trunk-head"><b>${esc(bg.label)}</b><small>${esc(bg.desc)}</small></div>
+      <ul class="mm-leaves">${chips}</ul>
+    </div>`;
+  }).join("");
+  view.innerHTML=`
+    <div class="sect-label" style="margin-top:0">Sơ đồ tư duy tổng quan</div>
+    <div class="mm-wrap">
+      <div class="mm-root"><b>Luật Sở hữu trí tuệ</b><small>3 nhóm lớn + bảo vệ quyền</small></div>
+      <div class="mm-trunks">${trunk}</div>
+    </div>
+    ${aiCardHtml()}
+    <div class="sect-label">Quy trình đăng ký — bấm để xem chi tiết ở tab Hồ sơ · Thủ tục</div>
+    <div class="hp-track">${trackHtml()}</div>`;
+  wireHomeClicks(view);
+}
+
+/* ---- sơ đồ tư duy tỏa tròn (desktop) — phỏng theo bố cục mindmap 4 nhánh màu ---- */
+const RADIAL_QUAD={tg:"ne",cn:"se",gt:"sw",bv:"nw"};
+function renderHomeRadial(view){
+  const quads=["nw","ne","sw","se"];
+  const byQuad={}; quads.forEach(q=>byQuad[q]=BIGGROUPS.find(bg=>RADIAL_QUAD[bg.id]===q));
+  const quadHtml=quads.map(q=>{
+    const bg=byQuad[q];
+    const subs=GROUPS.filter(g=>g.big===bg.id);
+    const leaves=subs.map(g=>`<li><div class="mm-tleaf" data-leaf="${g.id}">
+        <b>${esc(g.label)}</b><small>${esc(g.desc)}</small>
+        ${leafLinksHtml(g)}
+      </div></li>`).join("");
+    return `<div class="mm-quad mm-quad-${q}">
+      <div class="mm-thead" data-trunk="${bg.id}" data-quad="${q}"><b>${esc(bg.label)}</b><small>${esc(bg.desc)}</small></div>
+      <ul class="mm-tleaves">${leaves}</ul>
+    </div>`;
+  }).join("");
+  view.innerHTML=`
+    <div class="sect-label" style="margin-top:0">Sơ đồ tư duy tổng quan</div>
+    <div class="mm-radial" id="mmRadial">
+      <svg class="mm-lines" id="mmLines" aria-hidden="true"></svg>
+      <div class="mm-rroot" id="mmRoot"><b>Luật Sở hữu<br>trí tuệ</b><small>3 nhóm lớn + bảo vệ quyền</small></div>
+      ${quadHtml}
+    </div>
+    ${aiCardHtml()}
+    <div class="sect-label">Quy trình đăng ký — bấm để xem chi tiết ở tab Hồ sơ · Thủ tục</div>
+    <div class="hp-track">${trackHtml()}</div>`;
+  wireHomeClicks(view);
+  requestAnimationFrame(drawRadialLines);
+}
+
+function colorVarForBig(big){
+  return big==="tg"?"var(--mmI)":big==="cn"?"var(--mmII)":big==="gt"?"var(--mmIII)":"var(--mmIV)";
+}
+function nearCorner(rect,wrapRect,quad){
+  const isLeft = quad==="nw"||quad==="sw";
+  const isTop = quad==="nw"||quad==="ne";
+  return {x:(isLeft?rect.right:rect.left)-wrapRect.left, y:(isTop?rect.bottom:rect.top)-wrapRect.top};
+}
+function curvePath(p1,p2){
+  const dx=(p2.x-p1.x)*0.55;
+  return `M ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} C ${(p1.x+dx).toFixed(1)} ${p1.y.toFixed(1)}, ${(p2.x-dx).toFixed(1)} ${p2.y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+}
+function drawRadialLines(){
+  const svg=document.getElementById("mmLines");
+  const wrap=document.getElementById("mmRadial");
+  const rootEl=document.getElementById("mmRoot");
+  if(!svg||!wrap||!rootEl) return;
+  const wrapRect=wrap.getBoundingClientRect();
+  if(!wrapRect.width||!wrapRect.height) return;
+  // Các nhánh cao thấp khác nhau (vd. nhánh SHCN có 5 mục) nên hàng lưới không đều —
+  // đặt lại tâm "Luật SHTT" đúng vào ranh giới giữa hàng trên/hàng dưới để không đè lên tiêu đề nhánh.
+  const nwQ=wrap.querySelector(".mm-quad-nw"), swQ=wrap.querySelector(".mm-quad-sw");
+  if(nwQ&&swQ){
+    const nwR=nwQ.getBoundingClientRect(), swR=swQ.getBoundingClientRect();
+    const midY=((nwR.bottom+swR.top)/2)-wrapRect.top;
+    rootEl.style.top=midY+"px";
+  }
+  svg.setAttribute("viewBox",`0 0 ${wrapRect.width} ${wrapRect.height}`);
+  svg.style.width=wrapRect.width+"px"; svg.style.height=wrapRect.height+"px";
+  const rr=rootEl.getBoundingClientRect();
+  const rootPt={x:rr.left+rr.width/2-wrapRect.left, y:rr.top+rr.height/2-wrapRect.top};
+  let out="";
+  wrap.querySelectorAll(".mm-thead").forEach(th=>{
+    const big=th.dataset.trunk, quad=th.dataset.quad, color=colorVarForBig(big);
+    const tr=th.getBoundingClientRect();
+    const trunkPt=nearCorner(tr,wrapRect,quad);
+    out+=`<path d="${curvePath(rootPt,trunkPt)}" stroke="${color}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>`;
+    th.parentElement.querySelectorAll(".mm-tleaf").forEach(leafEl=>{
+      const lr=leafEl.getBoundingClientRect();
+      const leafPt=nearCorner(lr,wrapRect,quad);
+      out+=`<path d="${curvePath(trunkPt,leafPt)}" stroke="${color}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>`;
+    });
+  });
+  svg.innerHTML=out;
+}
+let homeResizeT;
+window.addEventListener("resize",()=>{
+  if(page!=="home"||query) return;
+  clearTimeout(homeResizeT);
+  homeResizeT=setTimeout(()=>{ renderHome(); },150);
+});
+
 function goPage(p){
   page=p;
   document.getElementById("tabHome").setAttribute("aria-pressed", String(p==="home"));
   document.getElementById("tabTheory").setAttribute("aria-pressed", String(p==="theory"));
   document.getElementById("tabFiling").setAttribute("aria-pressed", String(p==="filing"));
-  document.getElementById("heroTitle").textContent = p==="home" ? "Bản đồ tổng quan Luật Sở hữu trí tuệ" : p==="theory" ? "Bạn đang tra cứu đối tượng nào?" : "Hồ sơ của bạn đang ở bước nào?";
-  document.getElementById("heroSub").textContent = p==="home" ? "Bấm vào 1 nhóm trong sơ đồ để xem lý thuyết, hoặc 1 bước trong quy trình để xem hồ sơ/thủ tục. Gõ từ khóa vào ô tìm để tra nhanh toàn bộ nội dung." : p==="theory" ? "Chọn một nhóm quyền để xem khái niệm, điều kiện bảo hộ, căn cứ pháp lý." : "Chọn một bước trong quy trình để xem hồ sơ cần chuẩn bị và thủ tục tương ứng.";
+  document.getElementById("tabDuration").setAttribute("aria-pressed", String(p==="duration"));
+  document.getElementById("tabCases").setAttribute("aria-pressed", String(p==="cases"));
+  const titles={home:"Bản đồ tổng quan Luật Sở hữu trí tuệ",theory:"Bạn đang tra cứu đối tượng nào?",filing:"Hồ sơ của bạn đang ở bước nào?",duration:"Bạn muốn tra thời hạn hay thời hiệu?",cases:"Thực tiễn áp dụng: các vụ tranh chấp đã xảy ra"};
+  const subs={home:"Bấm vào 1 nhóm trong sơ đồ để xem lý thuyết, hoặc 1 bước trong quy trình để xem hồ sơ/thủ tục. Gõ từ khóa vào ô tìm để tra nhanh toàn bộ nội dung.",theory:"Chọn một nhóm quyền để xem khái niệm, điều kiện bảo hộ, căn cứ pháp lý.",filing:"Chọn một bước trong quy trình để xem hồ sơ cần chuẩn bị và thủ tục tương ứng.",duration:"Thời hạn bảo hộ = quyền tồn tại bao lâu. Thời hiệu = còn bao lâu để xử phạt/khởi kiện khi bị xâm phạm — 2 khái niệm khác nhau.",cases:"Các vụ việc có thật, đã có kết quả công bố, để hiểu luật được áp dụng ra sao trên thực tế."};
+  document.getElementById("heroTitle").textContent = titles[p]||titles.home;
+  document.getElementById("heroSub").textContent = subs[p]||subs.home;
   renderAll();
 }
 
@@ -833,6 +1165,12 @@ function renderAll(){
   }else if(page==="theory"){
     document.getElementById("journey").hidden=true;
     renderBranches();
+  }else if(page==="duration"){
+    document.getElementById("journey").hidden=true;
+    renderDuration();
+  }else if(page==="cases"){
+    document.getElementById("journey").hidden=true;
+    renderCases();
   }else{
     document.getElementById("journey").hidden=true;
     renderHome();
@@ -885,6 +1223,8 @@ function resetFilters(){
 document.getElementById("tabHome").addEventListener("click",()=>{ resetFilters(); goPage("home"); });
 document.getElementById("tabTheory").addEventListener("click",()=>{ resetFilters(); goPage("theory"); });
 document.getElementById("tabFiling").addEventListener("click",()=>{ resetFilters(); goPage("filing"); });
+document.getElementById("tabDuration").addEventListener("click",()=>{ resetFilters(); goPage("duration"); });
+document.getElementById("tabCases").addEventListener("click",()=>{ resetFilters(); goPage("cases"); });
 const qInput=document.getElementById("q");
 qInput.addEventListener("input",()=>{
   query=qInput.value.trim();
